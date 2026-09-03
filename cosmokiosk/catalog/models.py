@@ -79,7 +79,8 @@ class Services(models.Model):
     hairstyle = models.BooleanField(verbose_name="hairstyle", default=False )
     waxing = models.BooleanField(verbose_name="waxing", default=False)
     nails = models.BooleanField(verbose_name="nails", default=False)
-    client_info = models.ForeignKey('Client_Waiver', on_delete=models.SET_NULL, blank=True, null=True)
+    client_info = models.ForeignKey(Client_Waiver, on_delete=models.SET_NULL, blank=True, null=True)
+    
     
     def __str__(self):
         return f"{self.client_info}"
