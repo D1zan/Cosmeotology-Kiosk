@@ -47,6 +47,11 @@ class WaxingWaiverForm(forms.ModelForm):
     class Meta:
         model = Waxing_Waiver
         fields = ['medicine', 'allergy', 'soap_use', 'exposed', 'health_issues', 'agreement']
+
+    # write code so that the user name == the name they use in agreement
+    # use the super() method. what that does is grabs the original method for that class and uses it on the 
+    # method used that we coded.
+
     # def clean(self):
     #     cleaned_data = super().clean()
     #     boolean_fields = ['medicine', 'allergy', 'soap_use', 'exposed', 'health_issues', 'agreement'] 
@@ -71,11 +76,11 @@ class FeedbackQuestionsForm(forms.ModelForm):
 class FeedbackForm(forms.ModelForm):
     class Meta: 
         model = Feedback
-        fields = ['q1','q2','q3','q4','q5','q6','q7','q8'] #,'feedback_question'
+        fields = ['q1','q2','q3','q4','q5','q6','q7','q8', 'feedback_message'] #,'feedback_question'
 
         def clean(self):
             cleaned_data = super().clean()
-            fields = ['q1','q2','q3','q4','q5','q6','q7','q8'] 
+            fields = ['q1','q2','q3','q4','q5','q6','q7','q8', 'feedback_message'] 
             return cleaned_data 
     
 
@@ -84,10 +89,10 @@ class FeedbackForm(forms.ModelForm):
 class ServicesForm(forms.ModelForm):
     class Meta:
         model = Services
-        fields = ['perm', 'color', 'hairstyle', 'waxing', 'nails', 'client_info']
+        fields = ['perm', 'color', 'hairstyle', 'waxing', 'nails']
 
     def clean(self):
         cleaned_data = super().clean()
-        fields = ['perm', 'color', 'hairstyle', 'waxing', 'nails', 'client_info'] 
+        fields = ['perm', 'color', 'hairstyle', 'waxing', 'nails'] 
         return cleaned_data  
 
