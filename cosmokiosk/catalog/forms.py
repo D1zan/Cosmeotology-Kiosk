@@ -46,12 +46,11 @@ class ClientWaiverForm(forms.ModelForm):
 class WaxingWaiverForm(forms.ModelForm):
     class Meta:
         model = Waxing_Waiver
-        fields = ['medicine', 'allergy', 'soap_use', 'exposed', 'health_issues', 'agreement', 'client_info']
-
-    def clean(self):
-        cleaned_data = super().clean()
-        boolean_fields = ['medicine', 'allergy', 'soap_use', 'exposed', 'health_issues', 'agreement', 'client_info'] 
-        return cleaned_data   
+        fields = ['medicine', 'allergy', 'soap_use', 'exposed', 'health_issues', 'agreement']
+    # def clean(self):
+    #     cleaned_data = super().clean()
+    #     boolean_fields = ['medicine', 'allergy', 'soap_use', 'exposed', 'health_issues', 'agreement'] 
+    #     return cleaned_data   
 
 
 class FeedbackQuestionsForm(forms.ModelForm):

@@ -79,9 +79,9 @@ def feedback_view(request):
         form = FeedbackForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('welcome')
-    
+        return redirect('welcome')  
     else:
         form = FeedbackForm()
 
     return render(request, 'catalog/feedback.html', {'form':form})
+   
