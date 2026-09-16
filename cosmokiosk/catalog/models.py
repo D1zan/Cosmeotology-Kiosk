@@ -51,6 +51,8 @@ class Feedback(models.Model):
     q6 = models.BooleanField(verbose_name="Question #6", default=False)
     q7 = models.BooleanField(verbose_name="Question #7", default=False)
     q8 = models.BooleanField(verbose_name="Question #8", default=False)
+    feedback_message = models.TextField(blank=True)
+    
     client_info = models.ForeignKey('Client_Waiver', on_delete=models.SET_NULL, blank=True, null=True)
     def __str__(self):
         return f"{self.client_info}"
@@ -66,10 +68,9 @@ class Waxing_Waiver(models.Model):
     
     # Other
     agreement = models.CharField(max_length=100) #Client Signature
-    client_info = models.ForeignKey('Client_Waiver', on_delete=models.SET_NULL, blank=True, null=True)
     
     def __str__(self):
-        return f"{self.client_info}"
+        return f"{self.agreement}"
 
 
 class Services(models.Model):
@@ -83,6 +84,6 @@ class Services(models.Model):
     
     
     def __str__(self):
-        return f"{self.client_info}"
+        return f"{self.client_info}" 
     
 

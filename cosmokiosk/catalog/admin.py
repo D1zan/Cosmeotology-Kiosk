@@ -17,11 +17,11 @@ class ResponsesAdmin(admin.ModelAdmin): # For the Feedback model
     list_per_page = 25
 
 class WaxingAdmin(admin.ModelAdmin): # For the Waxing_Waiver model
-    list_display = ("medicine","allergy","soap_use","exposed","health_issues","agreement","client_info")
+    list_display = ("medicine","allergy","soap_use","exposed","health_issues","agreement")
     list_per_page = 25
 
 class ServiceAdmin(admin.ModelAdmin): # For the Services model
-    list_display = ("perm", "color", "hairstyle", "waxing", "nails", "client_info")
+    list_display = ("id", "perm", "color", "hairstyle", "waxing", "nails")
     list_per_page = 25
 models_and_admins = [
      (Client_Waiver, ClientAdmin),
