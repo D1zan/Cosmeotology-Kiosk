@@ -13,7 +13,7 @@ class QuestionAdmin(admin.ModelAdmin): # For the Feedback_Questions model
     list_per_page = 25
 
 class ResponsesAdmin(admin.ModelAdmin): # For the Feedback model
-    list_display = ("client_info", "q1","q2","q3","q4","q5","q6","q7","q8",)
+    list_display = ("client_info", "q1","q2","q3","q4","q5","q6","q7","q8", "feedback_message")
     
     list_per_page = 25
 
