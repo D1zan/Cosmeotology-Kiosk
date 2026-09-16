@@ -80,7 +80,6 @@ class FeedbackForm(forms.ModelForm):
 
         def clean(self):
             cleaned_data = super().clean()
-            fields = ['q1','q2','q3','q4','q5','q6','q7','q8', 'feedback_message'] 
             return cleaned_data 
     
 

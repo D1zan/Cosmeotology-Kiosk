@@ -13,7 +13,8 @@ class QuestionAdmin(admin.ModelAdmin): # For the Feedback_Questions model
     list_per_page = 25
 
 class ResponsesAdmin(admin.ModelAdmin): # For the Feedback model
-    list_display = ("q1","q2","q3","q4","q5","q6","q7","q8","client_info")
+    list_display = ("client_info", "q1","q2","q3","q4","q5","q6","q7","q8",)
+    
     list_per_page = 25
 
 class WaxingAdmin(admin.ModelAdmin): # For the Waxing_Waiver model
