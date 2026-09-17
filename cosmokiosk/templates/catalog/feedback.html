@@ -16,7 +16,7 @@
 
 <div class="form-box">
    <h2>Client Feedback </h2>
-   <form action="{% url 'welcome' %}" method="POST"
+   <form method="POST" action="{% url 'welcome' %}" enctype="application/x-www-form-urlencoded"
            onsubmit="alert('Thanks for your feedback!');">
        {% csrf_token %}
 

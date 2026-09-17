@@ -40,10 +40,15 @@ def services_page(request):
             service = form.save(commit=False)
             client_id = request.session.get('client_id')
             if client_id:
-                service.client_info = Client_Waiver.objects.get(id=client_id)
+                try:
+                    service.client_info = Client_Waiver.objects.get(id=client_id)
+                except Client_Waiver.DoesNotExist:
+                    print("--- WARNING: CLIENT_ID NOT FOUND IN YOUR MOM ---")
 
             service.save()    
             return redirect('welcome')
+        else:
+            print("services is not valid dorks")
     else:
         form = ServicesForm()
     
@@ -75,13 +80,20 @@ def client_waiver_view(request):
 
 def feedback_view(request):
     if request.method == "POST":
-        print("got it database")
         form = FeedbackForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('welcome')
-    
+            feedback = form.save(commit=False)
+            client_id = request.session.get('client_id')
+            if client_id:
+                try:
+                    feedback.client_info = Client_Waiver.objects.get(id=client_id)
+                except Client_Waiver.DoesNotExist:
+                    pass
+            feedback.save()
+            return redirect('welcome')  
+        else:
+            print(form.errors)
     else:
         form = FeedbackForm()
-
-    return render(request, 'catalog/feedback.html', {'form':form})
+    return render(request, 'catalog/feedback.html', {'form': form})
+   
