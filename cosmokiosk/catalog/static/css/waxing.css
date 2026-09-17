@@ -6,9 +6,7 @@ body {
 }
 
 
-/* =========================
- FORM CONTAINER
-========================= */
+
 
 .form-box {
   width: min(850px, 90%);
@@ -23,13 +21,11 @@ body {
 .form-box h2 {
   text-align: center;
   margin: 0 0 35px;
-  font-size: 32px;
+  font-size: 48px;
 }
 
 
-/* =========================
- QUESTIONS
-========================= */
+
 
 .question {
   margin: 0;
@@ -46,9 +42,6 @@ body {
 }
 
 
-/* =========================
- RADIO BUTTONS
-========================= */
 
 .question label {
   display: inline-flex;
@@ -67,9 +60,7 @@ body {
 }
 
 
-/* =========================
- DIVIDERS
-========================= */
+
 
 hr {
   border: none;
@@ -78,9 +69,7 @@ hr {
 }
 
 
-/* =========================
- NAME & SIGNATURE
-========================= */
+
 
 .form-box > form > label {
   display: block;
