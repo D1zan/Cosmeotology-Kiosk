@@ -1,5 +1,4 @@
 
-
 * {
   margin: 0;
   padding: 0;
@@ -29,11 +28,11 @@ body {
 
 
 .container {
-  width: min(800px, 80%);
+  width: min(100px, 10%);
   padding: 40px 40px;
 
   background-color: white;
-  border-radius: 16px;
+  border-radius: 10px;
 
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 
@@ -42,8 +41,8 @@ body {
 
 
 .container h1 {
-  margin: 0 0 35px;
-  font-size: 32px;
+  margin: 0 0 25px;
+  font-size: 30px;
   color: #222; 
 }
 
@@ -53,7 +52,7 @@ body {
 
 .question {
   margin: 0;
-  padding: 20px 0;
+  padding: 15px 0;
   text-align: left;
 }
 
@@ -70,13 +69,10 @@ body {
 .question label {
   display: inline-flex;
   align-items: center;
-
   gap: 8px;
   margin-right: 25px;
-
   cursor: pointer;
-
-  font-size: 17px;
+  font-size: 22px;
   width: auto;
 }
 
@@ -84,8 +80,8 @@ body {
 
 
 .question input[type="radio"] {
-  width: 18px;
-  height: 18px;
+  width: 25px;
+  height: 25px;
   margin-right: 0;
   cursor: pointer;
 }
@@ -131,31 +127,21 @@ textarea:focus {
 
 button {
   display: block;
-
   width: 100%;
   height: auto;
-
-  margin: 30px 0 0;
-  padding: 14px;
-
-  border: none;
+  padding: 25px;
   border-radius: 8px;
-
   background: #fd87df;
   color: #222;
-
   font-family: inherit;
-  font-size: 18px;
+  font-size: 30px;
   font-weight: bold;
-
   cursor: pointer;
-
-  transition: 0.2s;
+  transition: 0.9s;
 }
 
 button:hover {
-  background: #f56ed5;
-  transform: translateY(-1px);
+  background: #7C90DB;
 }
 
 button:active {
@@ -165,23 +151,23 @@ button:active {
 
 .form-box > form > label {
   display: block;
-  margin-top: 10px;
+  margin-top: 5px;
   margin-bottom: 10px;
-  font-size: 17px;
-  font-weight: 600;
+  font-size: 100px;
+  font-weight: 60;
 }
+
 .form-box {
-  width: min(800px, 50%);
-  margin: 220px auto;
+  width: (900px, 50%);
   padding: 80px 90px;
   background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 1px;
   box-sizing: border-box;
+  font-size: 25px;
 }
 
 .form-box h2 {
   text-align: center;
   margin: 0 0 15px;
-  font-size: 48px;
+  font-size: 65px;
 }
