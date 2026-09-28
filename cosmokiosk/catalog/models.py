@@ -43,14 +43,14 @@ class Feedback_Questions(models.Model):
         return f"Question {self.question}: {self.question_text}"
     
 class Feedback(models.Model):
-    q1 = models.BooleanField(verbose_name="Question #1", default=False)
-    q2 = models.BooleanField(verbose_name="Question #2", default=False)
-    q3 = models.BooleanField(verbose_name="Question #3", default=False)
-    q4 = models.BooleanField(verbose_name="Question #4", default=False)
-    q5 = models.BooleanField(verbose_name="Question #5", default=False)
-    q6 = models.BooleanField(verbose_name="Question #6", default=False)
-    q7 = models.BooleanField(verbose_name="Question #7", default=False)
-    q8 = models.BooleanField(verbose_name="Question #8", default=False)
+    q1 = models.IntegerField(verbose_name="Question #1")
+    q2 = models.IntegerField(verbose_name="Question #2")
+    q3 = models.IntegerField(verbose_name="Question #3")
+    q4 = models.IntegerField(verbose_name="Question #4")
+    q5 = models.IntegerField(verbose_name="Question #5")
+    q6 = models.IntegerField(verbose_name="Question #6")
+    q7 = models.IntegerField(verbose_name="Question #7")
+    q8 = models.IntegerField(verbose_name="Question #8")
     feedback_message = models.TextField(blank=True, null=True)
     
     client_info = models.ForeignKey('Client_Waiver', on_delete=models.SET_NULL, blank=True, null=True)

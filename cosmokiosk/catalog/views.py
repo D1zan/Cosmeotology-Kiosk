@@ -94,6 +94,6 @@ def feedback_view(request):
         else:
             print(form.errors)
     else:
-        form = FeedbackForm()
+        form = FeedbackForm() 
     return render(request, 'catalog/feedback.html', {'form': form})
    
