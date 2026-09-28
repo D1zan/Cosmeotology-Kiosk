@@ -1,4 +1,4 @@
-/* RESET */
+
 * {
   margin: 0;
   padding: 0;
@@ -6,73 +6,139 @@
 }
 
 
+html,
 body {
-  min-height: 100vh;
-  background-color: #fbfbfb;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  color: white;
+}
+
+
+.welcome-page {
+  width: 100%;
+  height: 100vh;
 
   display: flex;
-  flex-direction: column;
-
+  justify-content: center;
   align-items: center;
+
   text-align: center;
 
-  padding-top: 40px;
-  font-family: Arial, sans-serif;
+  
+  background:
+      linear-gradient(
+          135deg,
+          rgba(99, 5, 84, 0.95),
+          rgba(112, 62, 156, 0.95)
+      );
+
+  position: relative;
+  overflow: hidden;
+}
+
+
+
+
+
+.welcome-page::after {
+  content: "";
+  position: absolute;
+
+  width: 600px;
+  height: 600px;
+
+  background: rgba(50, 150, 255, 0.18);
+
+  border-radius: 50%;
+
+  bottom: -300px;
+  right: -200px;
+
+  filter: blur(80px);
+}
+
+
+.welcome-page-content {
+  position: relative;
+  z-index: 1;
+
+  max-width: 900px;
+  padding: 30px;
 }
 
 
 h1 {
-  margin-bottom: 15px;
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  line-height: 1.05;
+  font-weight: 800;
+
+  margin-bottom: 25px;
+
+  letter-spacing: -2px;
+
+  text-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  margin-bottom: 100px;
 }
 
 
-p {
-  max-width: 900px;
-  margin-bottom: 40px;
-  line-height: 1.5;
-  font-size: 2.0rem;
-  font-weight: 50;
-  color: #000000;
+.welcome-page-content p {
+  font-size: 1.3rem;
+  margin-bottom: 45px;
+
+  color: rgba(255, 255, 255, 0.85);
 }
 
 
 .btn-group {
   display: flex;
-  gap: 200px;
-  margin-bottom: 200px;
-
   justify-content: center;
   align-items: center;
 
-  flex: 1; 
+  gap: 18px;
 }
 
 
-.btn-group a {
-  display: inline-block;
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  min-width: 180px;
+  padding: 18px 35px;
+
+  border-radius: 6px;
+
   text-decoration: none;
 
-  font-size: 28px;
-  padding: 40px 90px;
+  font-size: 1.5rem;
+  font-weight: 700;
 
-  border-radius: 15px;
-  font-weight: bold;
+  letter-spacing: 1px;
 
-  background:#FD87DF;
-  color: #505050;
+  transition: all 0.25s ease;
 
-  transition: 0.3s;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
-.btn-group a:hover {
-  transform: scale(1.05);
-  background: #7C90DB;
+
+.btn-primary {
+  background: #e844bf;
+  color: white;
 }
 
-.message {
-  color: #87af6b;
-  border-radius: 8px;
-  justify-content:center;
-  text-align:center;
-  display:flex;
+
+.btn-secondary {
+  background: rgba(147, 83, 202, 0.95);
+  color: #ececec;
 }
+
+/* HOVER */
+.btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
