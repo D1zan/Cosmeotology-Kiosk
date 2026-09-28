@@ -26,12 +26,18 @@ h1 {
   margin-left: 25px;
   margin-bottom: 50px;
   font-size: 2.5rem;
+  align-items: center;
+  
 }
 
 p {
   max-width: 700px;
   margin: 15px auto 40px auto;
+<<<<<<< HEAD
   font-size: 60px;
+=======
+  font-size: 1.4rem;
+
   line-height: 1.5;
 }
 
@@ -77,7 +83,10 @@ form {
   box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
-label {display: block;}
+label {
+  display: block;
+  font-size: 1.4rem;
+}
 
 input[type=text], select {
   width: 100%;
@@ -114,8 +123,8 @@ button:hover{
 .error-text,
 .errorlist {
   display: block;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   color: red;
   text-align: center;
   font-size: medium;

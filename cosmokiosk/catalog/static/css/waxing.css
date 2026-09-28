@@ -9,13 +9,15 @@ body {
 
 
 .form-box {
-  width: min(850px, 90%);
-  margin: 50px auto;
-  padding: 40px 50px;
+  width: min(800px, 90%);
+  margin: 3
+  0px auto;
+  padding: 40px 40px;
   background-color: white;
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   box-sizing: border-box;
+  height: min(400px, 70%)
 }
 
 .form-box h2 {
@@ -29,7 +31,7 @@ body {
 
 .question {
   margin: 0;
-  padding: 20px 0;
+  padding: 12px 0;
   text-align: left;
   color: #000;
 }
