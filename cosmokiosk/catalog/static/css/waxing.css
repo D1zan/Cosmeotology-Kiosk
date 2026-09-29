@@ -17,7 +17,7 @@ body {
 
   background: linear-gradient(
       135deg,
-      #702791 0%,
+      #a943d8 0%,
       #55359d 45%,
       #3449aa 100%
   );
@@ -47,7 +47,7 @@ body::before {
 
   border-radius: 50%;
 
-  background: rgba(253, 135, 223, 0.20);
+  background: rgba(250, 149, 225, 0.2);
   filter: blur(90px);
 
   pointer-events: none;
