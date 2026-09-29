@@ -1,63 +1,91 @@
 <!DOCTYPE html>
-<html>   
+<html>
 <head>
-        <meta charset="utf-8">
+    <meta charset="utf-8">
 
-        {% load static %}
+    {% load static %}
 
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title> Cosmetology Form</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <link rel="stylesheet" href="{% static 'css/signin.css' %}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cosmetology Form</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{% static 'css/signin.css' %}">
 </head>
+
 <body>
 
-<div class="form-box">    
-  <h1>Welcome to Cosmetology!</h1>
-
-  <form method="POST" action=""
-    autocomplete="off">
-
-    {% csrf_token %}
-  
-    
-
-  <div class="center-section"><label for="id_first_name">First Name:</label>
-    <input type="text" id="id_first_name" name="first_name" value="{{ form.first_name.value|default:'' }}">
-
-    {% if form.first_name.errors %}
-      <span class="error-text">{{ form.first_name.errors.0}}</span>
-    {% endif %}
 
 
-    <label for="id_last_name">Last Name:</label>
-    <input type="text" id="id_last_name" name="last_name" value="{{ form.last_name.value|default:'' }}">
-
-    {% if form.last_name.errors %}
-      <span class="error-text">{{ form.last_name.errors.0}}</span>
-    {% endif %}
-</div>
-
-      <p>I recognize that students are performing the work done in this school and will be monitored by a licensed instructor.</p>
-      <p> Charges are for materials used only, no charge for services.</p>
-    <label class="containter">
-      <input type="checkbox" id="consent" name="consent">
-      Acknowledgement
-      <span class="checkmark"></span>
-
-    </label>
-    
-    {% if form.consent.errors %}
-    <span class="error-text">{{ form.consent.errors.0 }}</span>
-{% endif %}
+    <main class="page">
+        <div class="form-box">
 
 
-    <button type="submit">Submit</button>
+            <div class="form-header">
+                <h1>Welcome to Cosmetology!</h1>
+                <p class="subtitle">Please enter your information to check in.</p>
+            </div>
+
+            <form method="POST" action="" autocomplete="off">
+
+                {% csrf_token %}
+
+                <div class="center-section">
+
+                    <label for="id_first_name">First Name</label>
+                    <input
+                        type="text"
+                        id="id_first_name"
+                        name="first_name"
+                        value="{{ form.first_name.value|default:'' }}"
+                    >
+
+                    {% if form.first_name.errors %}
+                        <span class="error-text">{{ form.first_name.errors.0 }}</span>
+                    {% endif %}
 
 
-  </form>
-</div>
+                    <label for="id_last_name">Last Name</label>
+                    <input
+                        type="text"
+                        id="id_last_name"
+                        name="last_name"
+                        value="{{ form.last_name.value|default:'' }}"
+                    >
+
+                    {% if form.last_name.errors %}
+                        <span class="error-text">{{ form.last_name.errors.0 }}</span>
+                    {% endif %}
+
+                </div>
+
+                <div class="notice">
+                    <p>
+                        I recognize that students are performing the work done
+                        in this school and will be monitored by a licensed instructor.
+                    </p>
+
+                    <p>
+                        Charges are for materials used only, no charge for services.
+                    </p>
+                </div>
+
+                <label class="container">
+                    <input type="checkbox" id="consent" name="consent">
+                    <span>Acknowledgement</span>
+                    <span class="checkmark"></span>
+                </label>
+
+                {% if form.consent.errors %}
+                    <span class="error-text">{{ form.consent.errors.0 }}</span>
+                {% endif %}
+
+                <button type="submit">Check In</button>
+
+            </form>
+
+        </div>
+    </main>
 
 </body>
 </html>
