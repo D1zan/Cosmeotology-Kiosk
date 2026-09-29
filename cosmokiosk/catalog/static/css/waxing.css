@@ -1,64 +1,145 @@
-body {
-  background-color: #fcf7ff;
+* {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #222;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #222;
+
+
+  background: linear-gradient(
+      135deg,
+      #702791 0%,
+      #55359d 45%,
+      #3449aa 100%
+  );
+
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 25px;
+
+  position: relative;
+  overflow-x: hidden;
+}
+
+
+body::before {
+  content: "";
+  position: fixed;
+
+  width: 550px;
+  height: 550px;
+
+  top: -250px;
+  left: -200px;
+
+  border-radius: 50%;
+
+  background: rgba(253, 135, 223, 0.20);
+  filter: blur(90px);
+
+  pointer-events: none;
+}
+
+
+body::after {
+  content: "";
+  position: fixed;
+
+  width: 550px;
+  height: 550px;
+
+  bottom: -250px;
+  right: -200px;
+
+  border-radius: 50%;
+
+  background: rgba(50, 150, 255, 0.18);
+  filter: blur(90px);
+
+  pointer-events: none;
+}
 
 
 
 .form-box {
-  width: min(800px, 90%);
-  margin: 3
-  0px auto;
-  padding: 40px 40px;
-  background-color: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  box-sizing: border-box;
-  height: min(400px, 70%)
+  width: min(850px, 92%);
+  max-height: 95vh;
+
+  padding: 28px 40px;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  border-radius: 20px;
+
+  box-shadow:
+      0 20px 50px rgba(0, 0, 0, 0.20);
+
+  position: relative;
+  z-index: 1;
 }
+
+
 
 .form-box h2 {
   text-align: center;
-  margin: 0 0 35px;
-  font-size: 48px;
+
+  margin: 0 0 18px;
+
+  font-size: 36px;
+  color: #4d2c91;
 }
 
 
 
 
 .question {
-  margin: 0;
-  padding: 12px 0;
+  padding: 9px 0;
   text-align: left;
-  color: #000;
 }
 
 .question p {
-  margin: 0 0 15px;
-  font-size: 20px;
-  line-height: 1.5;
+  margin: 0 0 8px;
+
+  font-size: 16px;
+  line-height: 1.3;
   font-weight: 600;
 }
-
-
 
 .question label {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+
+  gap: 7px;
   margin-right: 25px;
+
   cursor: pointer;
-  font-size: 17px;
-  width: auto;
+
+  font-size: 15px;
 }
 
+
+
+
 .question input[type="radio"] {
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
+
   cursor: pointer;
+
+  accent-color: #702791;
 }
 
 
@@ -66,89 +147,93 @@ body {
 
 hr {
   border: none;
-  border-top: 1px solid #e5dfe7;
+  border-top: 1px solid #ddd7e8;
   margin: 0;
 }
 
 
 
-
 .form-box > form > label {
   display: block;
-  margin-top: 25px;
-  margin-bottom: 7px;
-  font-size: 17px;
+
+  margin-top: 11px;
+  margin-bottom: 5px;
+
+  font-size: 15px;
   font-weight: 600;
 }
 
 #fname,
 #agreement {
   width: 100%;
-  padding: 12px 14px;
-  box-sizing: border-box;
-  border: 1px solid #bbb;
+
+  padding: 10px 12px;
+
+  border: 1px solid #c8c2d0;
   border-radius: 8px;
-  font-size: 16px;
+
+  background: #faf9fc;
+
+  font-size: 15px;
+  font-family: inherit;
+
   outline: none;
-  transition: 0.2s;
+
+  transition:
+      border-color 0.2s,
+      box-shadow 0.2s,
+      background 0.2s;
 }
 
 #fname:focus,
 #agreement:focus {
-  border-color: #fd87df;
-  box-shadow: 0 0 0 3px rgba(253, 135, 223, 0.2);
-}
+  background: white;
 
+  border-color: #702791;
 
-
-
-.date-input,
-.name-input {
-  width: 195px;
-  padding: 12px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 2px solid #000;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-
-
-
-textarea {
-  width: 100%;
-  height: 80px;
-  border-radius: 8px;
-  border: 1px solid #030202;
-  padding: 10px;
-  margin-top: 10px;
-  box-sizing: border-box;
+  box-shadow:
+      0 0 0 3px rgba(112, 39, 145, 0.15);
 }
 
 
 
 button {
   display: block;
+
   width: 100%;
-  margin: 30px 0 0;
-  padding: 14px;
+
+  margin-top: 18px;
+  padding: 12px;
+
   border: none;
-  border-radius: 8px;
-  background: #fd87df;
-  color: #222;
-  font-size: 18px;
+  border-radius: 9px;
+
+  background: #3449aa;
+
+  color: white;
+
+  font-size: 17px;
   font-weight: bold;
+
   cursor: pointer;
-  transition: 0.2s;
-  height: auto;
+
+  box-shadow:
+      0 6px 18px rgba(112, 39, 145, 0.20);
+
+  transition:
+      transform 0.2s,
+      box-shadow 0.2s;
 }
 
 button:hover {
-  background: #f56ed5;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+
+  box-shadow:
+      0 9px 22px rgba(112, 39, 145, 0.30);
 }
 
 button:active {
   transform: translateY(0);
 }
+
+
