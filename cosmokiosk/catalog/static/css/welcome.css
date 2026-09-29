@@ -137,7 +137,7 @@ h1 {
 }
 
 
-<<<<<<< HEAD
+
 
 ul {
   list-style-type: none;
@@ -145,10 +145,12 @@ ul {
   padding: 0;
   overflow: hidden;
   background-color: #000000;
-=======
+
+  }
+  
 .btn:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
->>>>>>> 7f992f5777d76327777ff2b54178f492791f873d
+
 }
 

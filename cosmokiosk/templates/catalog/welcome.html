@@ -9,55 +9,40 @@
     <title>Cosmetology</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
 </head>
 
-<body>
-<<<<<<< HEAD
-   <h1>Welcome to Cosmetology </h1>
-   <div class="btn-group" >
-      <a href="{% url 'sign-in' %}">Check-In </a>
-      <a href="{% url 'feedback' %}">Check-Out </a>
-   </div>
 
 
 
-   <script>
-      (function() {
-         const params = new URLSearchParams(window.location.search);
-=======
->>>>>>> 7f992f5777d76327777ff2b54178f492791f873d
 
-    <main class="welcome-page">
-        <div class="welcome-page-content">
+   <main class="welcome-page">
+    <div class="welcome-page-content">
 
-            <h1>Welcome to<br>Cosmetology</h1>
+        <h1>Welcome to<br>Cosmetology</h1>
 
-            
+        <div class="btn-group">
+            <a href="{% url 'sign-in' %}" class="btn btn-primary">
+                Check-In
+            </a>
 
-            <div class="btn-group">
-                <a href="{% url 'sign-in' %}" class="btn btn-primary">
-                    Check-In
-                </a>
-
-                <a href="{% url 'feedback' %}" class="btn btn-secondary">
-                    Check-Out
-                </a>
-            </div>
-
+            <a href="{% url 'feedback' %}" class="btn btn-secondary">
+                Check-Out
+            </a>
         </div>
-    </main>
 
-    <script>
-        (function() {
-            const params = new URLSearchParams(window.location.search);
+    </div>
+</main>
 
-            if (params.get('thank') === '1') {
-                alert('Thank you for checking-in, someone will be with you shortly!');
-            }
-        })();
-    </script>
+<script>
+    (function() {
+        const params = new URLSearchParams(window.location.search);
+
+        if (params.get('thank') === '1') {
+            alert('Thank you for checking-in, someone will be with you shortly!');
+        }
+    })();
+</script>
 
 </body>
 </html>

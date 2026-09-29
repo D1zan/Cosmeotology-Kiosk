@@ -25,31 +25,6 @@ body {
 }
 
 
-
-
-.container {
-  width: min(100px, 10%);
-  padding: 40px 40px;
-
-  background-color: white;
-  border-radius: 10px;
-
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-
-  text-align: center;
-}
-
-
-.container h1 {
-  margin: 0 0 25px;
-  font-size: 30px;
-  color: #222; 
-}
-
-
-
-
-
 .question {
   margin: 0;
   padding: 15px 0;
@@ -76,7 +51,10 @@ body {
   width: auto;
 }
 
-
+label{
+  font-size: 10px;
+  
+}
 
 
 .question input[type="radio"] {
@@ -157,17 +135,6 @@ button:active {
   font-weight: 60;
 }
 
-.form-box {
-  width: (900px, 50%);
-  padding: 80px 90px;
-  background-color: white;
-  border-radius: 1px;
-  box-sizing: border-box;
-  font-size: 25px;
-}
-
-.form-box h2 {
-  text-align: center;
-  margin: 0 0 15px;
-  font-size: 65px;
+.fname{
+font-size: 90px;
 }

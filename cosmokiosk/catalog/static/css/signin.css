@@ -30,12 +30,17 @@ h1 {
   
 }
 
+
+
+
+
+
 p {
   max-width: 700px;
   margin: 15px auto 40px auto;
-<<<<<<< HEAD
+
   font-size: 60px;
-=======
+
   font-size: 1.4rem;
 
   line-height: 1.5;
