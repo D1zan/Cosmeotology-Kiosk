@@ -129,7 +129,7 @@ body::after {
 
 .question {
   padding: 5px 0;
-  margin-top: 4px;
+  margin-top: 17px;
 
   text-align: left;
 
@@ -186,37 +186,6 @@ hr {
 
 
 
-#fname {
-  width: 45%;
-  height: 38px;
-
-  padding: 7px 10px;
-
-  border: 1px solid #c8c2d0;
-  border-radius: 7px;
-
-  background: #faf9fc;
-
-  font-family: inherit;
-  font-size: 13px;
-
-  outline: none;
-
-  transition:
-      border-color 0.2s,
-      box-shadow 0.2s,
-      background 0.2s;
-}
-
-
-#fname:focus {
-  background: white;
-
-  border-color: #702791;
-
-  box-shadow:
-      0 0 0 3px rgba(112, 39, 145, 0.15);
-}
 
 
 
