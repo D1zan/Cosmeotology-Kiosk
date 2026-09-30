@@ -25,6 +25,7 @@ class Client_Waiver(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     date_time = models.DateTimeField(default=timezone.now)
+    checked_out = models.BooleanField(default=False)
     
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
@@ -43,14 +44,14 @@ class Feedback_Questions(models.Model):
         return f"Question {self.question}: {self.question_text}"
     
 class Feedback(models.Model):
-    q1 = models.IntegerField(verbose_name="Question #1")
-    q2 = models.IntegerField(verbose_name="Question #2")
-    q3 = models.IntegerField(verbose_name="Question #3")
-    q4 = models.IntegerField(verbose_name="Question #4")
-    q5 = models.IntegerField(verbose_name="Question #5")
-    q6 = models.IntegerField(verbose_name="Question #6")
-    q7 = models.IntegerField(verbose_name="Question #7")
-    q8 = models.IntegerField(verbose_name="Question #8")
+    q1 = models.IntegerField(verbose_name="Overall_Rating")
+    q2 = models.IntegerField(verbose_name="Service_Rating")
+    q3 = models.IntegerField(verbose_name="Preparation_Rating")
+    q4 = models.IntegerField(verbose_name="Professional_Rating")
+    q5 = models.IntegerField(verbose_name="Warmth_Rating")
+    q6 = models.IntegerField(verbose_name="Attitude_Rating")
+    q7 = models.IntegerField(verbose_name="Consultant_Rating")
+    q8 = models.IntegerField(verbose_name="Experience_Rating")
     feedback_message = models.TextField(blank=True, null=True)
     
     client_info = models.ForeignKey('Client_Waiver', on_delete=models.SET_NULL, blank=True, null=True)
@@ -80,7 +81,10 @@ class Services(models.Model):
     hairstyle = models.BooleanField(verbose_name="hairstyle", default=False )
     waxing = models.BooleanField(verbose_name="waxing", default=False)
     nails = models.BooleanField(verbose_name="nails", default=False)
-    client_info = models.ForeignKey(Client_Waiver, on_delete=models.SET_NULL, blank=True, null=True)
+    client_info = models.OneToOneField(
+        Client_Waiver, 
+        on_delete=models.CASCADE, 
+        primary_key=True)
     
     
     def __str__(self):

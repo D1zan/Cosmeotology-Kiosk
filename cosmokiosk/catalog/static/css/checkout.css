@@ -1,0 +1,158 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: rgba(99, 5, 84, 0.95);
+}
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    color: white;
+}
+
+/* Main checkout page */
+.checkout-page {
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(99, 5, 84, 0.95),
+            rgba(112, 62, 156, 0.95)
+        );
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* Blue glow in bottom right */
+.checkout-page::after {
+    content: "";
+    position: absolute;
+
+    width: 600px;
+    height: 600px;
+
+    background: rgba(50, 150, 255, 0.18);
+
+    border-radius: 50%;
+
+    bottom: -300px;
+    right: -200px;
+
+    filter: blur(80px);
+}
+
+/* Holds everything in the center */
+.checkout-page-content {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    max-width: 900px;
+
+    padding: 30px;
+}
+
+/* Check Out title */
+h1 {
+    font-size: clamp(3.5rem, 7vw, 6rem);
+    line-height: 1.05;
+    font-weight: 800;
+
+    margin-bottom: 70px;
+
+    letter-spacing: -2px;
+
+    text-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Form */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 25px;
+}
+
+/* Select your name text */
+label {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* Name dropdown */
+select {
+    width: 100%;
+    max-width: 450px;
+
+    padding: 18px 20px;
+
+    border: none;
+    border-radius: 6px;
+
+    font-size: 1.2rem;
+
+    background: white;
+    color: #333;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Dropdown when clicked */
+select:focus {
+    outline: 3px solid rgba(232, 68, 191, 0.5);
+}
+
+/* Continue button */
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    min-width: 180px;
+
+    padding: 18px 35px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: #e844bf;
+    color: white;
+
+    font-size: 1.5rem;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Continue button hover */
+.btn:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}

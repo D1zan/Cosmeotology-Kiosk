@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from .forms import Waxing_Waiver, ClientWaiverForm, Feedback_Questions, FeedbackForm, WaxingWaiverForm, ServicesForm, Client_Waiver
+from .forms import ClientWaiverForm, FeedbackForm, WaxingWaiverForm, ServicesForm
+from .models import Client_Waiver
 from django.utils import timezone
 
 
@@ -34,49 +35,85 @@ def welcome_page(request):
     
 def services_page(request):
     if request.method == "POST":
-        print("SERVICE SUBMITTED")
-        form = ServicesForm(request.POST)
-        if form.is_valid():
-            service = form.save(commit=False)
-            client_id = request.session.get('client_id')
-            if client_id:
-                try:
-                    service.client_info = Client_Waiver.objects.get(id=client_id)
-                except Client_Waiver.DoesNotExist:
-                    print("--- WARNING: CLIENT_ID NOT FOUND IN YOUR MOM ---")
+        print("SERVICE FORM WAS SUBMITTED")
 
-            service.save()    
-            return redirect('welcome')
+        form = ServicesForm(request.POST)
+
+        if form.is_valid():
+            client_id = request.session.get('client_id')
+
+            print("CLIENT ID:", client_id)
+
+            if client_id:
+                service = form.save(commit=False)
+                service.client_info = Client_Waiver.objects.get(id=client_id)
+                service.save()
+
+                print("Saved? Hopefully omg:", service.client_info_id)
+
+                return redirect('welcome')
+
+            else:
+                print("ERROR: NO CLIENT ID IN SESSION")
+
         else:
-            print("services is not valid dorks")
+            print("SERVICE FORM INVALID")
+            print(form.errors)
+
     else:
         form = ServicesForm()
-    
+
     return render(request, 'catalog/services.html', {'form': form})
 
 
 #this is the place for all the forms stuff
 def feedback_view(request):
-    # print(request.method)
     if request.method == "POST":
         form = FeedbackForm(request.POST)
-        # print()
+
         if form.is_valid():
             feedback = form.save(commit=False)
-            client_id = request.session.get('client_id')
-            print(client_id)
+
+            
+            client_id = request.session.get('checkout_client_id')
+
             if client_id:
                 try:
-                    feedback.client_info = Client_Waiver.objects.get(id=client_id)
+                    client = Client_Waiver.objects.get(id=client_id)
+
+                    feedback.client_info = client
+                    feedback.save()
+
+                    
+                    client.checked_out = True
+                    client.save()
+
                 except Client_Waiver.DoesNotExist:
-                    pass
-            feedback.save()
-            return redirect('welcome')  
+                    
+                    feedback.save()
+
+            else:
+                
+                feedback.save()
+
+           
+            request.session.pop('checkout_client_id', None)
+
+           
+            return redirect('welcome')
+
         else:
+            print("FEEDBACK FORM INVALID")
             print(form.errors)
+
     else:
-        form = FeedbackForm() 
-    return render(request, 'catalog/feedback.html', {'form': form})
+        form = FeedbackForm()
+
+    return render(
+        request,
+        'catalog/feedback.html',
+        {'form': form}
+    )
 
 def waiver_view(request):
     if request.method == "POST":
@@ -100,4 +137,19 @@ def client_waiver_view(request):
 
 
 
-   
+def checkout(request):
+
+    clients = Client_Waiver.objects.filter(checked_out=False).order_by('first_name', 'last_name')
+
+    if request.method == "POST":
+        selected_client_id = request.POST.get("client_id")
+
+        if selected_client_id:
+            request.session["checkout_client_id"] = selected_client_id
+            return redirect("feedback")
+
+    return render(
+        request,
+        "catalog/checkout.html",
+        {"clients": clients}
+    )

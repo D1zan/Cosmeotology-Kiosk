@@ -33,7 +33,7 @@
 </label>
 
 <label class="container">Hairstyle
-  <input type="checkbox" name="hair" id="hair">
+  <input type="checkbox" name="hairstyle" id="hairstyle">
   <span class="checkmark"></span>
 </label>
 
@@ -56,7 +56,7 @@
 function checkServices(event) {
   const perm = document.getElementById("perm").checked;
   const color = document.getElementById("color").checked;
-  const hair = document.getElementById("hair").checked;
+  const hairstyle = document.getElementById("hairstyle").checked;
   const waxing = document.getElementById("waxing").checked;
   const nails = document.getElementById("nails").checked;
 
@@ -64,13 +64,13 @@ function checkServices(event) {
     window.location.href = "{% url 'waxing_waiver' %}"; 
     return false;
   }
-  if (perm || color || hair || nails) {
-    window.location.href = "{% url 'welcome' %}?thank=1";
-    return false;
-  } else {
+  if (!perm && !color && !hairstyle && !waxing && !nails) {
     alert("Please select at least one service before submitting.");
     return false;
-}}
+  }
+
+  return true;
+}
 </script>
 
 

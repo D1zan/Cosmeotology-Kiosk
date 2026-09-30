@@ -41,12 +41,17 @@ class ClientWaiverForm(forms.ModelForm):
             
         return last_name
     
-    
-    
 class WaxingWaiverForm(forms.ModelForm):
     class Meta:
         model = Waxing_Waiver
         fields = ['medicine', 'allergy', 'soap_use', 'exposed', 'health_issues', 'agreement']
+
+    def clean_signature(self):
+        agreement = self.clean_signature.get('signature').strip()
+        if not agreement:
+            raise ValidationError('You need to sign this form!')
+        return agreement
+
 
     # write code so that the user name == the name they use in agreement
     # use the super() method. what that does is grabs the original method for that class and uses it on the 

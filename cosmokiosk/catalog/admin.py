@@ -5,7 +5,7 @@ from .models import Client_Waiver, Feedback_Questions, Feedback, Waxing_Waiver, 
 
 
 class ClientAdmin(admin.ModelAdmin): # For the Client_Waiver model
-    list_display = ("first_name", "last_name", "date_time")
+    list_display = ("id","first_name", "last_name", "date_time")
     list_per_page = 25
 
 class QuestionAdmin(admin.ModelAdmin): # For the Feedback_Questions model
@@ -22,7 +22,7 @@ class WaxingAdmin(admin.ModelAdmin): # For the Waxing_Waiver model
     list_per_page = 25
 
 class ServiceAdmin(admin.ModelAdmin): # For the Services model
-    list_display = ("id", "perm", "color", "hairstyle", "waxing", "nails")
+    list_display = ("client_info", "perm", "color", "hairstyle", "waxing", "nails")
     list_per_page = 25
 models_and_admins = [
      (Client_Waiver, ClientAdmin),
