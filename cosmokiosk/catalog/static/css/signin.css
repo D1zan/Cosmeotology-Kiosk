@@ -49,6 +49,22 @@ body::after {
 }
 
 
+
+
+
+
+
+p {
+  max-width: 700px;
+  margin: 15px auto 40px auto;
+
+  font-size: 60px;
+
+  font-size: 1.4rem;
+
+  line-height: 1.5;
+}
+
 .page {
   min-height: 100vh;
 

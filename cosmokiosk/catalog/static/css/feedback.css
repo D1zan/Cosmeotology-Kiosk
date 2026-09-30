@@ -4,6 +4,19 @@
   box-sizing: border-box;
 }
 
+
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  color: #ffffff;
+
+  background: linear-gradient(
+      135deg,
+      #cf78f7,
+      #040d3f
+  );
+
+  min-height: 100vh;
+
 html,
 body {
   width: 100%;
@@ -16,6 +29,7 @@ body {
   color: #222;
 
 
+
   background: linear-gradient(
       135deg,
       #702791 0%,
@@ -26,8 +40,11 @@ body {
   height: 100vh;
 
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+
+
+  padding: 60px 20px;
 
   padding: 14px 20px;
 
@@ -72,10 +89,48 @@ body::after {
   filter: blur(90px);
 
   pointer-events: none;
+
 }
 
 
 
+body::before {
+  content: "";
+  position: fixed;
+
+
+  width: 600px;
+  height: 600px;
+
+  background: rgba(250, 121, 242, 0.18);
+
+  border-radius: 50%;
+
+  bottom: -250px;
+  right: -200px;
+
+  filter: blur(90px);
+
+  pointer-events: none;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+
+  width: 550px;
+  height: 550px;
+
+  background: rgba(50, 150, 255, 0.18);
+
+  border-radius: 50%;
+
+  bottom: -250px;
+  right: -200px;
+
+  filter: blur(90px);
+
+  pointer-events: none;
 
 .form-box {
   width: min(900px, 94vw);
@@ -111,7 +166,9 @@ body::after {
   color: #4d2c91;
 
   flex-shrink: 0;
+
 }
+
 
 
 
@@ -124,6 +181,7 @@ body::after {
 
   min-height: 1;
 }
+
 
 
 
@@ -143,6 +201,9 @@ body::after {
   line-height: 1.15;
   font-weight: 600;
 
+  color: #ffffff;
+
+
   color: #222;
 }
 
@@ -161,7 +222,10 @@ body::after {
   font-size: 16px;
 }
 
-
+label{
+  font-size: 10px;
+  
+}
 
 
 .question input[type="radio"] {
@@ -194,7 +258,12 @@ textarea {
   width: 100%;
   height: 42px;
 
+
+  border-radius: 8px;
+  border: 1px solid #ffffff;
+
   padding: 7px 10px;
+
 
   margin-top: 1px;
 
@@ -294,6 +363,10 @@ button:active {
       background 0.2s;
 }
 
+
+.fname{
+font-size: 90px;
+
 #fname:focus {
   background: white;
 
@@ -301,4 +374,5 @@ button:active {
 
   box-shadow:
       0 0 0 3px rgba(112, 39, 145, 0.15);
+
 }
