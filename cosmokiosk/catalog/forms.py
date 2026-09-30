@@ -47,16 +47,84 @@ class ClientWaiverForm(forms.ModelForm):
             
         return last_name
     
+from django import forms
+from .models import Waxing_Waiver
+
+
 class WaxingWaiverForm(forms.ModelForm):
+
+    YES_NO_CHOICES = [
+        (True, "Yes"),
+        (False, "No"),
+    ]
+
+    medicine = forms.TypedChoiceField(
+        choices=YES_NO_CHOICES,
+        widget=forms.RadioSelect,
+        coerce=lambda x: x == "True",
+        required=True,
+        error_messages={
+            "required": "Please answer this question."
+        }
+    )
+
+    allergy = forms.TypedChoiceField(
+        choices=YES_NO_CHOICES,
+        widget=forms.RadioSelect,
+        coerce=lambda x: x == "True",
+        required=True,
+        error_messages={
+            "required": "Please answer this question."
+        }
+    )
+
+    soap_use = forms.TypedChoiceField(
+        choices=YES_NO_CHOICES,
+        widget=forms.RadioSelect,
+        coerce=lambda x: x == "True",
+        required=True,
+        error_messages={
+            "required": "Please answer this question."
+        }
+    )
+
+    exposed = forms.TypedChoiceField(
+        choices=YES_NO_CHOICES,
+        widget=forms.RadioSelect,
+        coerce=lambda x: x == "True",
+        required=True,
+        error_messages={
+            "required": "Please answer this question."
+        }
+    )
+
+    health_issues = forms.TypedChoiceField(
+        choices=YES_NO_CHOICES,
+        widget=forms.RadioSelect,
+        coerce=lambda x: x == "True",
+        required=True,
+        error_messages={
+            "required": "Please answer this question."
+        }
+    )
+
+    agreement = forms.CharField(
+        required=True,
+        error_messages={
+            "required": "Please sign before submitting."
+        }
+    )
+
     class Meta:
         model = Waxing_Waiver
-        fields = ['medicine', 'allergy', 'soap_use', 'exposed', 'health_issues', 'agreement']
-
-    def clean_signature(self):
-        agreement = self.clean_signature.get('signature').strip()
-        if not agreement:
-            raise ValidationError('You need to sign this form!')
-        return agreement
+        fields = [
+            "medicine",
+            "allergy",
+            "soap_use",
+            "exposed",
+            "health_issues",
+            "agreement",
+        ]
 
 
     # write code so that the user name == the name they use in agreement

@@ -13,7 +13,6 @@
 
 ## Developers
  - Sarah Dezan
- - Jayden Anokye
  - Shamar Johnson
  - Kayne Barbieri
 
