@@ -271,3 +271,14 @@ button:hover {
   font-size: 0.9rem;
 }
 
+.error-text2,
+.errorlist {
+  display: block;
+
+  margin-top: 12px;
+  margin-bottom: 15px;
+
+  color: #d93025;
+
+  font-size: 0.9rem;
+}
