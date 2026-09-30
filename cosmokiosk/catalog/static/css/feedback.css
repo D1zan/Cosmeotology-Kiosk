@@ -129,7 +129,11 @@ body::after {
 
 .question {
   padding: 5px 0;
+<<<<<<< HEAD
   margin-top: 17px;
+=======
+  margin-top: 4px;
+>>>>>>> 041bd95b93812bc2a8e769dd1db5acd9e82cc70c
 
   text-align: left;
 
@@ -186,7 +190,41 @@ hr {
 
 
 
+<<<<<<< HEAD
 
+=======
+#fname {
+  width: 45%;
+  height: 38px;
+
+  padding: 7px 10px;
+
+  border: 1px solid #c8c2d0;
+  border-radius: 7px;
+
+  background: #faf9fc;
+
+  font-family: inherit;
+  font-size: 13px;
+
+  outline: none;
+
+  transition:
+      border-color 0.2s,
+      box-shadow 0.2s,
+      background 0.2s;
+}
+
+
+#fname:focus {
+  background: white;
+
+  border-color: #702791;
+
+  box-shadow:
+      0 0 0 3px rgba(112, 39, 145, 0.15);
+}
+>>>>>>> 041bd95b93812bc2a8e769dd1db5acd9e82cc70c
 
 
 
@@ -232,7 +270,11 @@ button {
   display: block;
 
   width: 100%;
+<<<<<<< HEAD
   height: 50px;
+=======
+  height: 40px;
+>>>>>>> 041bd95b93812bc2a8e769dd1db5acd9e82cc70c
 
   padding: 9px;
   margin-top: 5px;
