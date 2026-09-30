@@ -18,59 +18,54 @@
 
          
         <!-- Question 1 -->
-        <div class="question">
-            <p>1. Are you using Retin-A, Accutane, Glycolic Acid, or Alpha Hydroxy treatment?</p>
-            <label><input type="radio" name="medicine" value="True"> Yes</label>
-            <label><input type="radio" name="medicine" value="False"> No</label>
-        </div>
-<hr>
-        <!-- Question 2 -->
-        <div class="question">
-            <p>2. Are you allergic to bees? (GIGI Honee)</p>
-            <label><input type="radio" name="allergy" value="True"> Yes</label>
-            <label><input type="radio" name="allergy" value="False"> No</label>
-
-        </div>
-<hr>
-        <!-- Question 3 -->
-        <div class="question">
-            <p>3. Have you used soap or astringents within the last two hours?</p>
-            <label><input type="radio" name="soap_use" value="True"> Yes</label>
-            <label><input type="radio" name="soap_use" value="False"> No</label>
-        
-        </div>
-<hr>
-        <!-- Question 4 -->
-        <div class="question">
-            <p>4. Have you been in the sun or tanning, or in hot water with in the last eight hours before your wax?</p>
-            <label><input type="radio" name="exposed" value="True"> Yes</label>
-            <label><input type="radio" name="exposed" value="False"> No</label>
-   
-        </div>
-<hr>
-        <!-- Question 5 -->
-        <div class="question">
-            <p>5. Do you have varicose veins, diabetes, phlebitis, chapped sore or sunburned skin, recent tissue eczema or any skin
-                 disorder?</p>
-            <label><input type="radio" name="health_issues" value="True"> Yes</label>
-            <label><input type="radio" name="health_issues" value="False"> No</label>
-
-        </div>
-<hr>
-
-    <label for="fname">Full Name:</label>
-    <input type="text" id="fname" name="fname" value="{{ full_name }}">
-
-    <label for="agreement">Signature:</label>
-    <input type="text" id="agreement" name="agreement">
-
-
-        
-
-<button type="submit">Submit</button>
-        
-
-    </form>
+<div class="question">
+    <p>1. Are you using Retin-A, Accutane, Glycolic Acid, or Alpha Hydroxy treatment?</p>
+    <label><input type="radio" name="medicine" value="True" required> Yes</label>
+    <label><input type="radio" name="medicine" value="False"> No</label>
 </div>
 
+<hr>
 
+<!-- Question 2 -->
+<div class="question">
+    <p>2. Are you allergic to bees? (GIGI Honee)</p>
+    <label><input type="radio" name="allergy" value="True" required> Yes</label>
+    <label><input type="radio" name="allergy" value="False"> No</label>
+</div>
+
+<hr>
+
+<!-- Question 3 -->
+<div class="question">
+    <p>3. Have you used soap or astringents within the last two hours?</p>
+    <label><input type="radio" name="soap_use" value="True" required> Yes</label>
+    <label><input type="radio" name="soap_use" value="False"> No</label>
+</div>
+
+<hr>
+
+<!-- Question 4 -->
+<div class="question">
+    <p>4. Have you been in the sun or tanning, or in hot water with in the last eight hours before your wax?</p>
+    <label><input type="radio" name="exposed" value="True" required> Yes</label>
+    <label><input type="radio" name="exposed" value="False"> No</label>
+</div>
+
+<hr>
+
+<!-- Question 5 -->
+<div class="question">
+    <p>5. Do you have varicose veins, diabetes, phlebitis, chapped sore or sunburned skin, recent tissue eczema or any skin disorder?</p>
+    <label><input type="radio" name="health_issues" value="True" required> Yes</label>
+    <label><input type="radio" name="health_issues" value="False"> No</label>
+</div>
+
+<hr>
+
+<label for="fname">Full Name:</label>
+<input type="text" id="fname" name="fname" value="{{ full_name }}">
+
+<label for="agreement">Signature:</label>
+<input type="text" id="agreement" name="agreement" required>
+
+<button type="submit">Submit</button>

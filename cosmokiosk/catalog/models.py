@@ -59,19 +59,36 @@ class Feedback(models.Model):
         return f"{self.client_info}"
     
 class Waxing_Waiver(models.Model):
-    # Questions .
-    # timestamp = models.DateTimeField(auto_now_add=True) <-- needs attention
-    medicine = models.BooleanField(verbose_name="Medicine", default=False) #Field that handles the use of certain medicine
-    allergy = models.BooleanField(verbose_name="Bee Allergy", default=False) #Field that handles client allergy to bees
-    soap_use = models.BooleanField(verbose_name="Skin Care Use", default= False)
-    exposed = models.BooleanField(verbose_name="Light Exposure", default=False)
-    health_issues = models.BooleanField(verbose_name="Health Conditions", default=False)
-    
-    # Other
-    agreement = models.CharField(max_length=100) #Client Signature
-    
+    medicine = models.BooleanField(
+        verbose_name="Medicine",
+        null=True
+    )
+
+    allergy = models.BooleanField(
+        verbose_name="Bee Allergy",
+        null=True
+    )
+
+    soap_use = models.BooleanField(
+        verbose_name="Skin Care Use",
+        null=True
+    )
+
+    exposed = models.BooleanField(
+        verbose_name="Light Exposure",
+        null=True
+    )
+
+    health_issues = models.BooleanField(
+        verbose_name="Health Conditions",
+        null=True
+    )
+    agreement = models.CharField(
+        max_length=100
+    )
+
     def __str__(self):
-        return f"{self.agreement}"
+        return self.agreement
 
 
 class Services(models.Model):
