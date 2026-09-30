@@ -53,25 +53,21 @@
 </form>
 
 <script>
-function checkServices(event) {
-  const perm = document.getElementById("perm").checked;
-  const color = document.getElementById("color").checked;
-  const hairstyle = document.getElementById("hairstyle").checked;
-  const waxing = document.getElementById("waxing").checked;
-  const nails = document.getElementById("nails").checked;
-
-   if (waxing) {
-    window.location.href = "{% url 'waxing_waiver' %}"; 
-    return false;
+  function checkServices(event) {
+    const perm = document.getElementById("perm").checked;
+    const color = document.getElementById("color").checked;
+    const hairstyle = document.getElementById("hairstyle").checked;
+    const waxing = document.getElementById("waxing").checked;
+    const nails = document.getElementById("nails").checked;
+  
+    if (!perm && !color && !hairstyle && !waxing && !nails) {
+      alert("Please select at least one service before submitting.");
+      return false;
+    }
+  
+    return true;
   }
-  if (!perm && !color && !hairstyle && !waxing && !nails) {
-    alert("Please select at least one service before submitting.");
-    return false;
-  }
-
-  return true;
-}
-</script>
+  </script>
 
 
 </body>
