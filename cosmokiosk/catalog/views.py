@@ -35,26 +35,25 @@ def welcome_page(request):
     
 def services_page(request):
     if request.method == "POST":
-        print("SERVICE FORM WAS SUBMITTED")
-
         form = ServicesForm(request.POST)
 
         if form.is_valid():
             client_id = request.session.get('client_id')
 
-            print("CLIENT ID:", client_id)
-
             if client_id:
+                client = Client_Waiver.objects.get(id=client_id)
+
+                # Save the client's selected services FIRST
                 service = form.save(commit=False)
-                service.client_info = Client_Waiver.objects.get(id=client_id)
+                service.client_info = client
                 service.save()
 
-                print("Saved? Hopefully omg:", service.client_info_id)
+                # If they selected waxing, send them to the waxing waiver
+                if service.waxing:
+                    return redirect('waxing_waiver')
 
+                # If they did NOT select waxing
                 return redirect('welcome')
-
-            else:
-                print("ERROR: NO CLIENT ID IN SESSION")
 
         else:
             print("SERVICE FORM INVALID")
@@ -63,7 +62,11 @@ def services_page(request):
     else:
         form = ServicesForm()
 
-    return render(request, 'catalog/services.html', {'form': form})
+    return render(
+        request,
+        'catalog/services.html',
+        {'form': form}
+    )
 
 
 #this is the place for all the forms stuff
