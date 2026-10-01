@@ -1,0 +1,79 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Client Details</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/client-details.css' %}"
+    >
+</head>
+
+<body>
+
+    <div class="details-box">
+
+        <a href="{% url 'teacher_dashboard' %}" class="back-button">
+            ← Back to Dashboard
+        </a>
+
+        <h1>
+            {{ client.first_name }} {{ client.last_name }}
+        </h1>
+
+        <p class="check-in-time">
+            Checked in:
+            {{ client.date_time|date:"M d, Y - g:i A" }}
+        </p>
+
+        <hr>
+
+        <h2>Services Requested</h2>
+
+        {% if services %}
+
+            <div class="services-list">
+
+                {% if services.perm %}
+                    <div class="service">✓ Perm</div>
+                {% endif %}
+
+                {% if services.color %}
+                    <div class="service">✓ Color</div>
+                {% endif %}
+
+                {% if services.hairstyle %}
+                    <div class="service">✓ Hairstyle</div>
+                {% endif %}
+
+                {% if services.waxing %}
+                    <div class="service">✓ Waxing</div>
+                {% endif %}
+
+                {% if services.nails %}
+                    <div class="service">✓ Nails</div>
+                {% endif %}
+
+
+                {% if services.waxing %}
+                    <div class="service">✓ Waxing</div>
+                {% endif %}
+
+            </div>
+
+        {% else %}
+
+            <p>No services have been selected.</p>
+
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
