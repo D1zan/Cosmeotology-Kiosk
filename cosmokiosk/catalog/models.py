@@ -10,17 +10,43 @@ import uuid
 
 # Create your models here.
 
-# class Checking(models.Model):
-#     name = models.CharField(max_length=100)
-#     check_in = models.DateTimeField(auto_now_add=True)
-#     check_out = models.DateTimeField(null=True, blank=True)
 
-#     def __str__(self):
-#         return self.na
-
-# model up for review, may not need it
 # models WILL GO THROUGH CHANGES, THEY ARE NOT FINAL. REMOVE THIS COMMENT WHEN THIS STATEMENT IS UNTRUEx
 
+# Profile Model Here (for admin panel)
+
+class Profile_Instance(models.Model):
+    username = models.CharField(max_length=20)
+    email_address = models.EmailField(max_length=254, help_text="Example: abc@gmail.com")
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    is_student = models.BooleanField(default=False)
+    is_shop_instructor = models.BooleanField(default=False)
+     
+    def __str__(self):
+        return self.email_address
+
+    
+    
+import uuid
+
+# Create your models here.
+
+# Create your models here.
+
+
+# models WILL GO THROUGH CHANGES, THEY ARE NOT FINAL. REMOVE THIS COMMENT WHEN THIS STATEMENT IS UNTRUEx
+
+# Profile Model Here (for admin panel)
+
+
+
+# Domain Expansion: Time Cell Moon Palace
+# Domain Expansion: Chimera Shadow Garden
+# Domain Expansion: Infinite Void
+# Domain Expansion: Malevolant Shrine
+# Domain Expansion: Threefold Affliction
+#Domain Expansion: 
 class Client_Waiver(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
@@ -85,6 +111,13 @@ class Waxing_Waiver(models.Model):
     )
     agreement = models.CharField(
         max_length=100
+    )
+
+    client_info = models.OneToOneField(
+        Client_Waiver,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
     )
 
     def __str__(self):
