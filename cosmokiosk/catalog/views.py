@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import ClientWaiverForm, FeedbackForm, WaxingWaiverForm, ServicesForm
-from .models import Client_Waiver, Services, Waxing_Waiver
+from .models import Client_Waiver, Services, Waxing_Waiver, Feedback
 from django.utils import timezone
 
 
@@ -186,10 +186,30 @@ def teacher_dashboard(request): # gets all clients who have not checked out
         checked_out=False
     ).order_by('date_time') # puts in order by date and time
 
+    feedback_list = Feedback.objects.select_related(
+        'client_info'
+    ).order_by('-id')
+
+    selected_feedback = None
+
+    feedback_id = request.GET.get('feedback_id')
+
+    if feedback_id:
+        try:
+            selected_feedback =Feedback.objects.select_related(
+                'client_info'
+            ).get(id=feedback_id)
+        except Feedback.DoesNotExist:
+            selected_feedback = None
+    
+
     return render(
         request,
         'catalog/teacher-dashboard.html', # sends to the teachers dashboard
-        {'clients': clients}
+        {'clients': clients,
+         'feedback_list': feedback_list,
+         'selected_feedback': selected_feedback
+         }
     )
 
 def client_details(request, client_id):
@@ -219,39 +239,23 @@ def client_details(request, client_id):
     )
 
 def teacher_page(request):
+
     if request.method == "POST":
-        full_name = request.POST.get("full_name")
-        email = request.POST.get("email")
 
-        # Make sure both fields were filled out
-        if full_name and email:
+        form_type = request.POST.get("form_type")
 
-            # Split full name into first and last name
-            name_parts = full_name.strip().split(" ", 1)
+        # SIGN IN FORM
+        if form_type == "sign_in":
 
-            first_name = name_parts[0]
+            email = request.POST.get("email")
+            password = request.POST.get("password")
 
-            if len(name_parts) > 1:
-                last_name = name_parts[1]
-            else:
-                last_name = ""
+            print("Sign In")
+            print("Email:", email)
 
-            # Check if this email already belongs to a user
-            user = User.objects.filter(email=email).first()
-
-            # If they don't exist, create them
-            if not user:
-                user = User.objects.create_user(
-                    username=email,
-                    email=email,
-                    first_name=first_name,
-                    last_name=last_name
-                )
-
-                # They don't have a password yet
-                user.set_unusable_password()
-                user.save()
-
-            return redirect("welcome")
-
-    return render(request, "catalog/teacher_sign_in.html")
+            # Send teacher to dashboard
+            return redirect("teacher_dashboard")
+    return render(
+        request,
+        "catalog/teacher_sign_in.html"
+    )

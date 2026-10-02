@@ -1,27 +1,323 @@
-{% for client in clients %}
+{% load static %}
 
-    <div class="client-card">
+<!DOCTYPE html>
+<html lang="en">
 
-        <div>
-            <h3>
-                {{ client.first_name }}
-                {{ client.last_name }}
-            </h3>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-            <p>
-                Checked in:
-                {{ client.date_time|date:"M d, Y - g:i A" }}
+    <title>Teacher Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/teacher-dashboard.css' %}?v=3"
+    >
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- Page Title -->
+        <h1>Teacher Dashboard</h1>
+
+
+       
+        <section class="clients-section">
+
+            <h2>Currently Checked-In Clients</h2>
+
+            <div class="client-list">
+
+                {% for client in clients %}
+
+                    <div class="client-card">
+
+                        <div class="client-info">
+
+                            <h3>
+                                {{ client.first_name }}
+                                {{ client.last_name }}
+                            </h3>
+
+                            <p>
+                                Checked in:
+                                {{ client.date_time|date:"M d, Y - g:i A" }}
+                            </p>
+
+                        </div>
+
+                        <a
+                            href="{% url 'client_details' client.id %}"
+                            class="view-button"
+                        >
+                            View Client
+                        </a>
+
+                    </div>
+
+                {% empty %}
+
+                    <p class="empty-message">
+                        There are currently no checked-in clients.
+                    </p>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        <hr>
+
+
+        <!-- ========================= -->
+        <!-- CLIENT FEEDBACK -->
+        <!-- ========================= -->
+
+        <section class="feedback-section">
+
+            <h2>Client Feedback</h2>
+
+            <p class="section-description">
+                Select a client to view their submitted feedback.
             </p>
-        </div>
 
-        <a href="{% url 'client_details' client.id %}">
-            View Client
-        </a>
+
+            <!-- Feedback Dropdown -->
+            <form method="GET" class="feedback-selector">
+
+                <select
+                    name="feedback_id"
+                    id="feedback_id"
+                    required
+                >
+
+                    <option value="">
+                        Select a client
+                    </option>
+
+                    {% for feedback in feedback_list %}
+
+                        <option
+                            value="{{ feedback.id }}"
+
+                            {% if selected_feedback.id == feedback.id %}
+                                selected
+                            {% endif %}
+                        >
+
+                            {% if feedback.client_info %}
+
+                                {{ feedback.client_info.first_name }}
+                                {{ feedback.client_info.last_name }}
+
+                            {% else %}
+
+                                Unknown Client
+
+                            {% endif %}
+
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+
+                <button
+                    type="submit"
+                    class="feedback-button"
+                >
+                    View Feedback
+                </button>
+
+            </form>
+
+
+            <!-- ========================= -->
+            <!-- SELECTED FEEDBACK -->
+            <!-- ========================= -->
+
+            {% if selected_feedback %}
+
+                <div class="selected-feedback">
+
+
+                    <!-- Client Name -->
+
+                    <h2 class="feedback-title">
+
+                        {% if selected_feedback.client_info %}
+
+                            {{ selected_feedback.client_info.first_name }}
+                            {{ selected_feedback.client_info.last_name }}'s Feedback
+
+                        {% else %}
+
+                            Client Feedback
+
+                        {% endif %}
+
+                    </h2>
+
+
+                    <!-- Ratings -->
+
+                    <div class="ratings">
+
+
+                        <div class="rating">
+
+                            <span>
+                                Overall Rating
+                            </span>
+
+                            <strong>
+                                {{ selected_feedback.q1 }}/4
+                            </strong>
+
+                        </div>
+
+
+                        <div class="rating">
+
+                            <span>
+                                Service Rating
+                            </span>
+
+                            <strong>
+                                {{ selected_feedback.q2 }}/4
+                            </strong>
+
+                        </div>
+
+
+                        <div class="rating">
+
+                            <span>
+                                Preparation Rating
+                            </span>
+
+                            <strong>
+                                {{ selected_feedback.q3 }}/4
+                            </strong>
+
+                        </div>
+
+
+                        <div class="rating">
+
+                            <span>
+                                Professional Rating
+                            </span>
+
+                            <strong>
+                                {{ selected_feedback.q4 }}/4
+                            </strong>
+
+                        </div>
+
+
+                        <div class="rating">
+
+                            <span>
+                                Warmth Rating
+                            </span>
+
+                            <strong>
+                                {{ selected_feedback.q5 }}/4
+                            </strong>
+
+                        </div>
+
+
+                        <div class="rating">
+
+                            <span>
+                                Attitude Rating
+                            </span>
+
+                            <strong>
+                                {{ selected_feedback.q6 }}/4
+                            </strong>
+
+                        </div>
+
+
+                        <div class="rating">
+
+                            <span>
+                                Consultant Rating
+                            </span>
+
+                            <strong>
+                                {{ selected_feedback.q7 }}/4
+                            </strong>
+
+                        </div>
+
+
+                        <div class="rating">
+
+                            <span>
+                                Experience Rating
+                            </span>
+
+                            <strong>
+                                {{ selected_feedback.q8 }}/4
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Written Feedback -->
+
+                    <div class="feedback-message">
+
+                        <h3>
+                            Written Feedback
+                        </h3>
+
+                        {% if selected_feedback.feedback_message %}
+
+                            <p>
+                                {{ selected_feedback.feedback_message }}
+                            </p>
+
+                        {% else %}
+
+                            <p>
+                                No written feedback was provided.
+                            </p>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            {% endif %}
+
+
+            <!-- No Feedback Yet -->
+
+            {% if not feedback_list %}
+
+                <p class="empty-message">
+                    No client feedback has been submitted yet.
+                </p>
+
+            {% endif %}
+
+        </section>
 
     </div>
 
-{% empty %}
+</body>
 
-    <p>There are currently no checked-in clients.</p>
-
-{% endfor %}
+</html>

@@ -1,0 +1,210 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Teacher Sign In</title>
+
+    <!-- Connects this HTML page to teacher_sign_in.css -->
+    <link rel="stylesheet" href="{% static 'css/teacher_sign_in.css' %}">
+</head>
+
+<body>
+
+    <main class="teacher-page">
+
+        <h1>Teacher Portal</h1>
+        <p class="subtitle">Access the Cosmetology Teacher Dashboard</p>
+
+        <div class="forms-container">
+
+            <!-- LOG IN SIDE -->
+            <div class="form-bubble">
+
+                <h2>Log In</h2>
+
+                <p class="form-description">
+                    Already have an account? Sign in below.
+                </p>
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <input type="hidden" name="form_type" value="sign_in">
+
+                    <div class="input-group">
+                        <label for="signin-email">Email</label>
+
+                        <input
+                            type="email"
+                            id="signin-email"
+                            name="email"
+                            placeholder="Enter your email"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="input-group">
+                        <label for="signin-password">Password</label>
+
+                        <input
+                            type="password"
+                            id="signin-password"
+                            name="password"
+                            placeholder="Enter your password"
+                            required
+                        >
+                    </div>
+
+
+                    <button type="submit" class="teacher-btn">
+                        Log In
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!--
+            =====================================================
+            SIGN UP SECTION - COMMENTED OUT FOR NOW
+            =====================================================
+
+            DIVIDING LINE
+
+            <div class="divider"></div>
+
+
+            SIGN UP / ACCOUNT CREATION SIDE
+
+            <div class="form-bubble">
+
+                <h2>Sign Up</h2>
+
+                <p class="form-description">
+                    Enter your teacher information below.
+                </p>
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <input type="hidden" name="form_type" value="log_in">
+
+
+                    <div class="input-group">
+                        <label for="teacher-id">Teacher ID</label>
+
+                        <input
+                            type="text"
+                            id="teacher-id"
+                            name="teacher_id"
+                            placeholder="Enter your Teacher ID"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="name-row">
+
+                        <div class="input-group">
+
+                            <label for="first-name">
+                                First Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="first-name"
+                                name="first_name"
+                                placeholder="First name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label for="last-name">
+                                Last Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="last-name"
+                                name="last_name"
+                                placeholder="Last name"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="login-email">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="login-email"
+                            name="email"
+                            placeholder="Enter your email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="login-password">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="login-password"
+                            name="password"
+                            placeholder="Create a password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button type="submit" class="teacher-btn">
+                        Sign Up
+                    </button>
+
+                </form>
+
+            </div>
+
+            =====================================================
+            END SIGN UP SECTION
+            =====================================================
+            -->
+
+        </div>
+
+
+        <!-- Back to Welcome Page -->
+        <a href="{% url 'welcome' %}" class="back-btn">
+            ← Back to Welcome
+        </a>
+
+    </main>
+
+</body>
+
+</html>
