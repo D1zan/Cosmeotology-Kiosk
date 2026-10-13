@@ -1,0 +1,411 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    padding: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #702791 0%,
+            #55359d 45%,
+            #3449aa 100%
+        );
+
+    color: #222;
+
+    position: relative;
+    overflow-x: hidden;
+}
+
+
+/* Pink background bubble */
+
+body::before {
+    content: "";
+    position: fixed;
+
+    width: 450px;
+    height: 450px;
+
+    top: -150px;
+    left: -120px;
+
+    border-radius: 50%;
+
+    background: rgba(253, 135, 223, 0.20);
+
+    filter: blur(20px);
+
+    pointer-events: none;
+}
+
+
+/* Blue background bubble */
+
+body::after {
+    content: "";
+    position: fixed;
+
+    width: 500px;
+    height: 500px;
+
+    right: -180px;
+    bottom: -180px;
+
+    border-radius: 50%;
+
+    background: rgba(50, 150, 255, 0.18);
+
+    filter: blur(25px);
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   WHOLE TEACHER PAGE
+   ========================================= */
+
+.teacher-page {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    max-width: 1100px;
+
+    min-height: calc(100vh - 60px);
+
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =========================================
+   TITLE
+   ========================================= */
+
+.teacher-page > h1 {
+    margin: 0 0 8px;
+
+    color: white;
+
+    text-align: center;
+
+    font-size: 40px;
+    font-weight: 700;
+
+    text-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.20);
+}
+
+
+.subtitle {
+    margin: 0 0 30px;
+
+    color: rgba(255, 255, 255, 0.85);
+
+    text-align: center;
+
+    font-size: 15px;
+}
+
+
+/* =========================================
+   FORM CONTAINER
+   Centers the Log In box
+   ========================================= */
+
+.forms-container {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* =========================================
+   LOG IN BUBBLE
+   ========================================= */
+
+.form-bubble {
+    width: 100%;
+    max-width: 500px;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    border-radius: 22px;
+
+    padding: 32px;
+
+    box-shadow:
+        0 18px 45px rgba(20, 10, 60, 0.25);
+}
+
+
+/* =========================================
+   FORM TITLE
+   ========================================= */
+
+.form-bubble h2 {
+    margin: 0 0 8px;
+
+    color: #4d2c91;
+
+    text-align: center;
+
+    font-size: 27px;
+}
+
+
+.form-description {
+    margin: 0 0 25px;
+
+    color: #6d6875;
+
+    text-align: center;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   INPUT GROUPS
+   ========================================= */
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 18px;
+}
+
+
+.input-group label {
+    margin-bottom: 7px;
+
+    color: #4d2c91;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+/* =========================================
+   INPUT BOXES
+   ========================================= */
+
+.input-group input {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border: 2px solid #ddd3ec;
+
+    border-radius: 10px;
+
+    background: white;
+
+    color: #333;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+
+.input-group input:focus {
+    border-color: #9c69d8;
+
+    box-shadow:
+        0 0 0 3px rgba(156, 105, 216, 0.13);
+}
+
+
+.input-group input::placeholder {
+    color: #aaa;
+}
+
+
+/* =========================================
+   FIRST + LAST NAME
+
+   Keeping this here in case you bring
+   the Sign Up form back later.
+   ========================================= */
+
+.name-row {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+}
+
+
+/* =========================================
+   LOG IN BUTTON
+   ========================================= */
+
+.teacher-btn {
+    width: 100%;
+
+    padding: 13px 18px;
+
+    margin-top: 5px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fd87df,
+            #9c69d8
+        );
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 12px rgba(112, 39, 145, 0.18);
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+
+.teacher-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(112, 39, 145, 0.25);
+}
+
+
+/* =========================================
+   BACK TO WELCOME BUTTON
+   ========================================= */
+
+.back-btn {
+    display: inline-block;
+
+    margin-top: 25px;
+
+    padding: 11px 18px;
+
+    border: 1px solid rgba(255, 255, 255, 0.40);
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease;
+}
+
+
+.back-btn:hover {
+    transform: translateY(-2px);
+
+    background: rgba(255, 255, 255, 0.20);
+}
+
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 900px) {
+
+    body {
+        padding: 20px;
+    }
+
+    .teacher-page {
+        min-height: calc(100vh - 40px);
+    }
+
+    .form-bubble {
+        max-width: 500px;
+    }
+
+}
+
+
+/* =========================================
+   PHONE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 12px;
+    }
+
+
+    .teacher-page {
+        min-height: calc(100vh - 24px);
+    }
+
+
+    .teacher-page > h1 {
+        font-size: 32px;
+    }
+
+
+    .subtitle {
+        margin-bottom: 22px;
+    }
+
+
+    .form-bubble {
+        width: 100%;
+
+        padding: 22px;
+    }
+
+
+    .name-row {
+        grid-template-columns: 1fr;
+
+        gap: 0;
+    }
+
+}

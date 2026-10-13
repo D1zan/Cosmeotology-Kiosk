@@ -19,10 +19,13 @@
 
     <div class="details-box">
 
+        <!-- Back Button -->
         <a href="{% url 'teacher_dashboard' %}" class="back-button">
             ← Back to Dashboard
         </a>
 
+
+        <!-- Client Information -->
         <h1>
             {{ client.first_name }} {{ client.last_name }}
         </h1>
@@ -32,8 +35,11 @@
             {{ client.date_time|date:"M d, Y - g:i A" }}
         </p>
 
+
         <hr>
 
+
+        <!-- Services -->
         <h2>Services Requested</h2>
 
         {% if services %}
@@ -41,39 +47,170 @@
             <div class="services-list">
 
                 {% if services.perm %}
-                    <div class="service">✓ Perm</div>
+                    <div class="service">
+                        ✓ Perm
+                    </div>
                 {% endif %}
+
 
                 {% if services.color %}
-                    <div class="service">✓ Color</div>
+                    <div class="service">
+                        ✓ Color
+                    </div>
                 {% endif %}
+
 
                 {% if services.hairstyle %}
-                    <div class="service">✓ Hairstyle</div>
+                    <div class="service">
+                        ✓ Hairstyle
+                    </div>
                 {% endif %}
 
+
                 {% if services.waxing %}
-                    <div class="service">✓ Waxing</div>
+                    <div class="service">
+                        ✓ Waxing
+                    </div>
                 {% endif %}
+
 
                 {% if services.nails %}
-                    <div class="service">✓ Nails</div>
-                {% endif %}
-
-
-                {% if services.waxing %}
-                    <div class="service">✓ Waxing</div>
+                    <div class="service">
+                        ✓ Nails
+                    </div>
                 {% endif %}
 
             </div>
 
+
+            <!-- Waxing Information -->
+            {% if services.waxing %}
+
+                <hr>
+
+                <div class="waxing-info">
+
+                    <h2>Waxing Information</h2>
+
+
+                    {% if waxing_waiver %}
+
+                        <div class="waxing-answer">
+
+                            <strong>Medicine:</strong>
+
+                            {% if waxing_waiver.medicine %}
+                                <span>Yes</span>
+                            {% else %}
+                                <span>No</span>
+                            {% endif %}
+
+                            <p class="waxing-question">
+                                Are you using Retin-A, Accutane, Glycolic Acid, or Alpha Hydroxy treatment?
+                            </p>
+
+                        </div>
+
+
+                        <div class="waxing-answer">
+
+                            <strong>Bee Allergy:</strong>
+
+                            {% if waxing_waiver.allergy %}
+                                <span>Yes</span>
+                            {% else %}
+                                <span>No</span>
+                            {% endif %}
+                            <p class="waxing-question">
+                                Are you allergic to bees? (GIGI Honee)
+                            </p>
+
+                        </div>
+
+
+                        <div class="waxing-answer">
+
+                            <strong>Skin Care Use:</strong>
+
+                            {% if waxing_waiver.soap_use %}
+                                <span>Yes</span>
+                            {% else %}
+                                <span>No</span>
+                            {% endif %}
+                            <p class="waxing-question">
+                                Have you used soap or astringents within the last two hours?
+                            </p>
+
+                        </div>
+
+
+                        <div class="waxing-answer">
+
+                            <strong>Light Exposure:</strong>
+
+                            {% if waxing_waiver.exposed %}
+                                <span>Yes</span>
+                            {% else %}
+                                <span>No</span>
+                            {% endif %}
+                            <p class="waxing-question">
+                                Have you been in the sun or tanning, or in hot water with in the last eight hours before your wax?
+                            </p>
+
+                        </div>
+
+
+                        <div class="waxing-answer">
+
+                            <strong>Health Conditions:</strong>
+
+                            {% if waxing_waiver.health_issues %}
+                                <span>Yes</span>
+                            {% else %}
+                                <span>No</span>
+                            {% endif %}
+                            <p class="waxing-question">
+                                Do you have varicose veins, diabetes, phlebitis, chapped sore or sunburned skin, recent tissue eczema or any skin disorder?
+                            </p>
+
+                        </div>
+
+
+                        <div class="waxing-answer">
+
+                            <strong>Agreement:</strong>
+
+                            <span>
+                                {{ waxing_waiver.agreement }}
+                            </span>
+
+                        </div>
+
+
+                    {% else %}
+
+                        <p class="no-waiver">
+                            Waxing was selected, but no waxing waiver
+                            was found for this client.
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+            {% endif %}
+
+
         {% else %}
 
-            <p>No services have been selected.</p>
+            <p class="no-services">
+                No services have been selected.
+            </p>
 
         {% endif %}
 
     </div>
 
 </body>
+
 </html>
