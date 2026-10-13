@@ -9,14 +9,22 @@
     <title>Cosmetology</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
 </head>
 
+<body>
 
+<main class="welcome-page">
 
+    <!-- Logo Button -->
+    <a href="{% url 'welcome' %}" class="logo-btn">
+        <img
+            src="https://image.maxpreps.io/school-mascot/1/b/0/1b0af59d-862a-45ab-b45b-4f4d6c981915.gif?version=637066541400000000&width=1024&height=1024"
+            alt="Cosmetology Logo"
+        >
+    </a>
 
-
-   <main class="welcome-page">
     <div class="welcome-page-content">
 
         <h1>Welcome to Cosmetology</h1>
@@ -32,6 +40,7 @@
         </div>
 
     </div>
+
 </main>
 
 <script>

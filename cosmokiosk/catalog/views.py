@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import ClientWaiverForm, FeedbackForm, WaxingWaiverForm, ServicesForm
-from .models import Client_Waiver
+from .models import Client_Waiver, Services, Waxing_Waiver
 from django.utils import timezone
 
 
@@ -29,6 +29,8 @@ def signin_view(request):
         form = ClientWaiverForm(initial={'date_time': timezone.now()})
     return render(request, 'catalog/sign-in.html', {'form': form})
 
+def client_waiver_view(request):
+    return signin_view(request)
 
 def welcome_page(request):
     return render(request, 'catalog/welcome.html')
@@ -122,21 +124,42 @@ def waiver_view(request):
     if request.method == "POST":
         print("USER SUBMITTED")
         form = WaxingWaiverForm(request.POST)
+
         if form.is_valid():
             print("VALID")
-            form.save()
+
+            waiver = form.save(commit=False)
+
+            client_id = request.session.get('client_id')
+
+            if client_id:
+                try:
+                    waiver.client_info = Client_Waiver.objects.get(
+                        id=client_id
+                    )
+                except Client_Waiver.DoesNotExist:
+                    pass
+
+            waiver.save()
+
             return redirect('welcome')
+
         else:
             print("INVALID", form.errors)
+
     else:
         form = WaxingWaiverForm()
 
     full_name = request.session.get('saved_full_name', '')
-    return render(request, 'catalog/waxing.html', {'form':form, 'full_name':full_name})
 
-
-def client_waiver_view(request):
-    return signin_view(request)
+    return render(
+        request,
+        'catalog/waxing.html',
+        {
+            'form': form,
+            'full_name': full_name
+        }
+    )
 
 
 
@@ -156,3 +179,79 @@ def checkout(request):
         "catalog/checkout.html",
         {"clients": clients}
     )
+
+
+def teacher_dashboard(request): # gets all clients who have not checked out
+    clients = Client_Waiver.objects.filter(
+        checked_out=False
+    ).order_by('date_time') # puts in order by date and time
+
+    return render(
+        request,
+        'catalog/teacher-dashboard.html', # sends to the teachers dashboard
+        {'clients': clients}
+    )
+
+def client_details(request, client_id):
+    try:
+        client = Client_Waiver.objects.get(id=client_id)
+    except Client_Waiver.DoesNotExist:
+        return redirect('teacher_dashboard')
+
+    try:
+        services = Services.objects.get(client_info=client)
+    except Services.DoesNotExist:
+        services = None
+
+    try:
+        waxing_waiver = Waxing_Waiver.objects.get(client_info=client)
+    except Waxing_Waiver.DoesNotExist:
+        waxing_waiver = None
+
+    return render(
+        request,
+        'catalog/client-details.html',
+        {
+            'client': client,
+            'services': services,
+            'waxing_waiver': waxing_waiver
+        }
+    )
+
+def teacher_page(request):
+    if request.method == "POST":
+        full_name = request.POST.get("full_name")
+        email = request.POST.get("email")
+
+        # Make sure both fields were filled out
+        if full_name and email:
+
+            # Split full name into first and last name
+            name_parts = full_name.strip().split(" ", 1)
+
+            first_name = name_parts[0]
+
+            if len(name_parts) > 1:
+                last_name = name_parts[1]
+            else:
+                last_name = ""
+
+            # Check if this email already belongs to a user
+            user = User.objects.filter(email=email).first()
+
+            # If they don't exist, create them
+            if not user:
+                user = User.objects.create_user(
+                    username=email,
+                    email=email,
+                    first_name=first_name,
+                    last_name=last_name
+                )
+
+                # They don't have a password yet
+                user.set_unusable_password()
+                user.save()
+
+            return redirect("welcome")
+
+    return render(request, "catalog/teacher_sign_in.html")

@@ -1,0 +1,27 @@
+{% for client in clients %}
+
+    <div class="client-card">
+
+        <div>
+            <h3>
+                {{ client.first_name }}
+                {{ client.last_name }}
+            </h3>
+
+            <p>
+                Checked in:
+                {{ client.date_time|date:"M d, Y - g:i A" }}
+            </p>
+        </div>
+
+        <a href="{% url 'client_details' client.id %}">
+            View Client
+        </a>
+
+    </div>
+
+{% empty %}
+
+    <p>There are currently no checked-in clients.</p>
+
+{% endfor %}
