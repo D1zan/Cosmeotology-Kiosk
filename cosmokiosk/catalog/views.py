@@ -212,6 +212,20 @@ def teacher_dashboard(request): # gets all clients who have not checked out
          }
     )
 
+def teacher_feedback(request):
+
+    feedback_list = Feedback.objects.select_related(
+        'client_info'
+    ).order_by('-id')
+
+    return render(
+        request,
+        'catalog/teacher-feedback.html',
+        {
+            'feedback_list': feedback_list
+        }
+    )
+
 def client_details(request, client_id):
     try:
         client = Client_Waiver.objects.get(id=client_id)
