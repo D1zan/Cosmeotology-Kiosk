@@ -8,67 +8,46 @@ import uuid
 
 # Create your models here.
 
-# Create your models here.
-
-
 # models WILL GO THROUGH CHANGES, THEY ARE NOT FINAL. REMOVE THIS COMMENT WHEN THIS STATEMENT IS UNTRUEx
 
-# Profile Model Here (for admin panel)
 
 class Profile_Instance(models.Model):
+    #profile_id = models.IntegerField()
     username = models.CharField(max_length=20)
-    email_address = models.EmailField(max_length=254, help_text="Example: abc@gmail.com")
+    email_address = models.EmailField(
+        max_length=254,
+        help_text="Example: abc@gmail.com",
+    )
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    is_student = models.BooleanField(default=False)
-    is_shop_instructor = models.BooleanField(default=False)
-     
+    is_student = models.BooleanField(default=False, null=True)
+    is_shop_instructor = models.BooleanField(default=False, null=True)
+
     def __str__(self):
         return self.email_address
 
-    
-    
-import uuid
 
-# Create your models here.
-
-# Create your models here.
-
-
-# models WILL GO THROUGH CHANGES, THEY ARE NOT FINAL. REMOVE THIS COMMENT WHEN THIS STATEMENT IS UNTRUEx
-
-# Profile Model Here (for admin panel)
-
-
-
-# Domain Expansion: Time Cell Moon Palace
-# Domain Expansion: Chimera Shadow Garden
-# Domain Expansion: Infinite Void
-# Domain Expansion: Malevolant Shrine
-# Domain Expansion: Threefold Affliction
-#Domain Expansion: 
 class Client_Waiver(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     date_time = models.DateTimeField(default=timezone.now)
     checked_out = models.BooleanField(default=False)
-    
+
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
-        
-    
+
     def get_absolute_url(self):
-        return reverse('client-info', args=[str(self.id)])
-    
-    
+        return reverse("client-info", args=[str(self.id)])
+
 
 class Feedback_Questions(models.Model):
     question = models.IntegerField(unique=True)
     question_text = models.CharField(max_length=100)
-    
+
     def __str__(self):
         return f"Question {self.question}: {self.question_text}"
-    
+
+
 class Feedback(models.Model):
     q1 = models.IntegerField(verbose_name="Overall_Rating")
     q2 = models.IntegerField(verbose_name="Service_Rating")
@@ -78,46 +57,52 @@ class Feedback(models.Model):
     q6 = models.IntegerField(verbose_name="Attitude_Rating")
     q7 = models.IntegerField(verbose_name="Consultant_Rating")
     q8 = models.IntegerField(verbose_name="Experience_Rating")
-    feedback_message = models.TextField(blank=True, null=True)
-    
-    client_info = models.ForeignKey('Client_Waiver', on_delete=models.SET_NULL, blank=True, null=True)
+
+    feedback_message = models.TextField(
+        blank=True,
+        null=True,
+    )
+
+    client_info = models.ForeignKey(
+        "Client_Waiver",
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+    )
+
     def __str__(self):
         return f"{self.client_info}"
-    
+
+
 class Waxing_Waiver(models.Model):
     medicine = models.BooleanField(
         verbose_name="Medicine",
-        null=True
+        null=True,
     )
-
     allergy = models.BooleanField(
         verbose_name="Bee Allergy",
-        null=True
+        null=True,
     )
-
     soap_use = models.BooleanField(
         verbose_name="Skin Care Use",
-        null=True
+        null=True,
     )
-
     exposed = models.BooleanField(
         verbose_name="Light Exposure",
-        null=True
+        null=True,
     )
-
     health_issues = models.BooleanField(
         verbose_name="Health Conditions",
-        null=True
+        null=True,
     )
-    agreement = models.CharField(
-        max_length=100
-    )
+
+    agreement = models.CharField(max_length=100)
 
     client_info = models.OneToOneField(
         Client_Waiver,
         on_delete=models.CASCADE,
         null=True,
-        blank=True
+        blank=True,
     )
 
     def __str__(self):
@@ -125,19 +110,32 @@ class Waxing_Waiver(models.Model):
 
 
 class Services(models.Model):
+    perm = models.BooleanField(
+        verbose_name="perm",
+        default=False,
+    )
+    color = models.BooleanField(
+        verbose_name="color",
+        default=False,
+    )
+    hairstyle = models.BooleanField(
+        verbose_name="hairstyle",
+        default=False,
+    )
+    waxing = models.BooleanField(
+        verbose_name="waxing",
+        default=False,
+    )
+    nails = models.BooleanField(
+        verbose_name="nails",
+        default=False,
+    )
 
-    perm = models.BooleanField(verbose_name="perm", default=False )
-    color = models.BooleanField(verbose_name="color", default=False )
-    hairstyle = models.BooleanField(verbose_name="hairstyle", default=False )
-    waxing = models.BooleanField(verbose_name="waxing", default=False)
-    nails = models.BooleanField(verbose_name="nails", default=False)
     client_info = models.OneToOneField(
-        Client_Waiver, 
-        on_delete=models.CASCADE, 
-        primary_key=True)
-    
-    
-    def __str__(self):
-        return f"{self.client_info}" 
-    
+        Client_Waiver,
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
 
+    def __str__(self):
+        return f"{self.client_info}"
