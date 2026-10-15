@@ -1,0 +1,184 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Client Feedback</title>
+
+    <link rel="stylesheet" href="{% static 'css/teacher-dashboard.css' %}">
+</head>
+
+<body>
+
+    <div class="dashboard-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <h2 class="sidebar-title">
+                Cosmetology
+            </h2>
+
+            <nav class="sidebar-nav">
+
+                <a
+                    href="{% url 'teacher_dashboard' %}"
+                    class="sidebar-link"
+                >
+                    Checked-In Clients
+                </a>
+
+                <a
+                    href="{% url 'teacher_feedback' %}"
+                    class="sidebar-link active"
+                    aria-current="page"
+                >
+                    Client Feedback
+                </a>
+
+            </nav>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="dashboard-content">
+
+            <h1>Client Feedback</h1>
+
+            <p class="page-description">
+                View feedback submitted by checked-out clients.
+            </p>
+
+
+            <section class="feedback-section">
+
+                <div class="feedback-list">
+
+                    {% for feedback in feedback_list %}
+
+                        <details class="feedback-card">
+
+                            <summary class="feedback-summary">
+
+                                <div class="feedback-client">
+
+                                    <h3>
+                                        {% if feedback.client_info %}
+                                            {{ feedback.client_info.first_name }}
+                                            {{ feedback.client_info.last_name }}
+                                        {% else %}
+                                            Unknown Client
+                                        {% endif %}
+                                    </h3>
+
+                                    <p>
+                                        Overall Rating:
+                                        {{ feedback.q1 }}/4
+                                    </p>
+
+                                </div>
+
+                                <span class="feedback-expand">
+                                    View Feedback
+                                </span>
+
+                            </summary>
+
+
+                            <!-- EXPANDED FEEDBACK -->
+                            <div class="feedback-details">
+
+                                <h3>Ratings</h3>
+
+                                <div class="ratings">
+
+                                    <div class="rating">
+                                        <span>Overall Rating</span>
+                                        <strong>{{ feedback.q1 }}/4</strong>
+                                    </div>
+
+                                    <div class="rating">
+                                        <span>Service Rating</span>
+                                        <strong>{{ feedback.q2 }}/4</strong>
+                                    </div>
+
+                                    <div class="rating">
+                                        <span>Preparation Rating</span>
+                                        <strong>{{ feedback.q3 }}/4</strong>
+                                    </div>
+
+                                    <div class="rating">
+                                        <span>Professional Rating</span>
+                                        <strong>{{ feedback.q4 }}/4</strong>
+                                    </div>
+
+                                    <div class="rating">
+                                        <span>Warmth Rating</span>
+                                        <strong>{{ feedback.q5 }}/4</strong>
+                                    </div>
+
+                                    <div class="rating">
+                                        <span>Attitude Rating</span>
+                                        <strong>{{ feedback.q6 }}/4</strong>
+                                    </div>
+
+                                    <div class="rating">
+                                        <span>Consultant Rating</span>
+                                        <strong>{{ feedback.q7 }}/4</strong>
+                                    </div>
+
+                                    <div class="rating">
+                                        <span>Experience Rating</span>
+                                        <strong>{{ feedback.q8 }}/4</strong>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="feedback-message">
+
+                                    <h3>Written Feedback</h3>
+
+                                    {% if feedback.feedback_message %}
+
+                                        <p>
+                                            {{ feedback.feedback_message }}
+                                        </p>
+
+                                    {% else %}
+
+                                        <p>
+                                            No written feedback was provided.
+                                        </p>
+
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+                        </details>
+
+                    {% empty %}
+
+                        <p class="empty-message">
+                            No feedback has been submitted yet.
+                        </p>
+
+                    {% endfor %}
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+</html>
