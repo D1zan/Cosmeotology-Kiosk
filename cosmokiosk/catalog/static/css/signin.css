@@ -282,3 +282,46 @@ button:hover {
 
   font-size: 0.9rem;
 }
+
+/* =========================================
+   BACK TO HOME BUTTON
+   Matches Teacher Sign In & Checkout
+   ========================================= */
+
+   .back-btn-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 25px;
+}
+
+.back-btn {
+    display: inline-block;
+
+    padding: 11px 18px;
+
+    border: 1px solid rgba(255, 255, 255, 0.40);
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease;
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+
+    background: rgba(255, 255, 255, 0.20);
+}

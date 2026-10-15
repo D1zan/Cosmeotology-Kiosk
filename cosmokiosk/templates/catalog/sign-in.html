@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,11 +16,8 @@
 
 <body>
 
-
-
     <main class="page">
         <div class="form-box">
-
 
             <div class="form-header">
                 <h1>Welcome to Cosmetology!</h1>
@@ -43,7 +41,6 @@
                     {% if form.first_name.errors %}
                         <span class="error-text">{{ form.first_name.errors.0 }}</span>
                     {% endif %}
-
 
                     <label for="id_last_name">Last Name</label>
                     <input
@@ -83,6 +80,13 @@
                 <button type="submit">Check In</button>
 
             </form>
+
+            <!-- Back to Home Button -->
+            <div class="back-btn-container">
+                <a href="{% url 'welcome' %}" class="back-btn">
+                    ← Back to Home
+                </a>
+            </div>
 
         </div>
     </main>
