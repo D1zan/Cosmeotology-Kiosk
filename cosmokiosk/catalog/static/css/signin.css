@@ -50,8 +50,9 @@ body::after {
 
 
 
-
-
+.stars {
+  color: red;
+}
 
 
 p {

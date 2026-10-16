@@ -30,7 +30,7 @@
 
                 <div class="center-section">
 
-                    <label for="id_first_name">First Name</label>
+                    <label for="id_first_name">First Name<span class="stars">*</span></label>
                     <input
                         type="text"
                         id="id_first_name"
@@ -42,7 +42,7 @@
                         <span class="error-text">{{ form.first_name.errors.0 }}</span>
                     {% endif %}
 
-                    <label for="id_last_name">Last Name</label>
+                    <label for="id_last_name">Last Name<span class="stars">*</span></label>
                     <input
                         type="text"
                         id="id_last_name"
@@ -69,7 +69,7 @@
 
                 <label class="container">
                     <input type="checkbox" id="consent" name="consent">
-                    <span>Acknowledgement</span>
+                    <span> Yes, I acknowledge the notices above</span>
                     <span class="checkmark"></span>
                 </label>
 
