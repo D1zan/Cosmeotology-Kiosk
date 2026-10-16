@@ -1,3 +1,4 @@
+
 {% load static %}
 
 <!DOCTYPE html>
@@ -23,6 +24,7 @@
                 Cosmetology
             </h2>
 
+            <!-- NAVIGATION LINKS AT TOP -->
             <nav class="sidebar-nav">
 
                 <a
@@ -41,6 +43,14 @@
                 </a>
 
             </nav>
+
+            <!-- BACK TO HOME BUTTON AT VERY BOTTOM -->
+            <a
+                href="{% url 'welcome' %}"
+                class="sidebar-link back-home-btn"
+            >
+                ← Back to Home
+            </a>
 
         </aside>
 
