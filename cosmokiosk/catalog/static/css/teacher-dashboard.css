@@ -689,3 +689,132 @@ body::after {
     transform: translateY(-2px);
     box-shadow: 0 5px 14px rgba(112, 39, 145, 0.25);
 }
+.dashboard-layout {
+    display: flex;
+    min-height: 100vh;
+    align-items: stretch;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 100vh;
+    height: auto;
+}
+
+/* Push Back to Home to the very bottom */
+.sidebar .back-home-btn {
+    margin-top: 500px;
+    
+
+    display: block;
+    text-align: center;
+}
+
+/* Mobile layout */
+@media (max-width: 700px) {
+    .dashboard-layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        min-height: auto;
+    }
+
+    .sidebar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .sidebar .back-home-btn {
+        margin-top: 20px;
+    }
+}
+}
+
+/* =========================================
+   SMALL SCREEN STYLES
+   ========================================= */
+
+   @media (max-width: 450px) {
+
+    .clients-section,
+    .feedback-section {
+        padding: 18px;
+    }
+
+    .feedback-summary {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* =========================================
+   SIDEBAR HEIGHT AND POSITIONING
+   ========================================= */
+
+.dashboard-layout {
+    display: flex;
+    min-height: 100vh;
+    align-items: stretch;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 100vh;
+}
+
+/* =========================================
+   BACK TO HOME AT BOTTOM
+   ========================================= */
+
+.sidebar .back-home-btn {
+    display: block;
+
+    margin-top: auto;
+
+    padding: 13px 17px;
+
+    border: 1px solid #d9c8e9;
+    border-radius: 10px;
+
+    background: #f8f5fc;
+    color: #702791;
+
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease;
+}
+
+.sidebar .back-home-btn:hover {
+    transform: translateY(-2px);
+    background: #f2e9fa;
+}
+
+/* =========================================
+   MOBILE OVERRIDES
+   ========================================= */
+
+@media (max-width: 700px) {
+   
+    .dashboard-layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .sidebar .back-home-btn {
+        margin-top: 20px;
+    }
+}
