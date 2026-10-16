@@ -57,122 +57,142 @@
 
             <section class="feedback-section">
 
+                <!-- SEARCH AND SORT -->
+                <form method="GET" class="feedback-controls">
+            
+                    <div class="search-container">
+                        <input
+                            type="text"
+                            name="search"
+                            placeholder="Search client by name..."
+                            value="{{ search_query }}"
+                            class="feedback-search"
+                        >
+                    </div>
+            
+                    <div class="sort-container">
+                        <label for="sort">Sort by:</label>
+            
+                        <select name="sort" id="sort" class="feedback-sort">
+            
+                            <option value="newest"
+                                {% if sort_by == 'newest' %}selected{% endif %}>
+                                Newest First
+                            </option>
+            
+                            <option value="oldest"
+                                {% if sort_by == 'oldest' %}selected{% endif %}>
+                                Oldest First
+                            </option>
+            
+                            <option value="az"
+                                {% if sort_by == 'az' %}selected{% endif %}>
+                                Name A-Z
+                            </option>
+            
+                            <option value="za"
+                                {% if sort_by == 'za' %}selected{% endif %}>
+                                Name Z-A
+                            </option>
+            
+                        </select>
+                    </div>
+            
+                    <button type="submit" class="filter-button">
+                        Apply
+                    </button>
+            
+                </form>
+            
                 <div class="feedback-list">
 
                     {% for feedback in feedback_list %}
-
-                        <details class="feedback-card">
-
-                            <summary class="feedback-summary">
-
-                                <div class="feedback-client">
-
-                                    <h3>
-                                        {% if feedback.client_info %}
-                                            {{ feedback.client_info.first_name }}
-                                            {{ feedback.client_info.last_name }}
-                                        {% else %}
-                                            Unknown Client
-                                        {% endif %}
-                                    </h3>
-
-                                    <p>
-                                        Overall Rating:
-                                        {{ feedback.q1 }}/4
-                                    </p>
-
-                                </div>
-
-                                <span class="feedback-expand">
-                                    View Feedback
-                                </span>
-
-                            </summary>
-
-
-                            <!-- EXPANDED FEEDBACK -->
-                            <div class="feedback-details">
-
-                                <h3>Ratings</h3>
-
-                                <div class="ratings">
-
-                                    <div class="rating">
-                                        <span>Overall Rating</span>
-                                        <strong>{{ feedback.q1 }}/4</strong>
-                                    </div>
-
-                                    <div class="rating">
-                                        <span>Service Rating</span>
-                                        <strong>{{ feedback.q2 }}/4</strong>
-                                    </div>
-
-                                    <div class="rating">
-                                        <span>Preparation Rating</span>
-                                        <strong>{{ feedback.q3 }}/4</strong>
-                                    </div>
-
-                                    <div class="rating">
-                                        <span>Professional Rating</span>
-                                        <strong>{{ feedback.q4 }}/4</strong>
-                                    </div>
-
-                                    <div class="rating">
-                                        <span>Warmth Rating</span>
-                                        <strong>{{ feedback.q5 }}/4</strong>
-                                    </div>
-
-                                    <div class="rating">
-                                        <span>Attitude Rating</span>
-                                        <strong>{{ feedback.q6 }}/4</strong>
-                                    </div>
-
-                                    <div class="rating">
-                                        <span>Consultant Rating</span>
-                                        <strong>{{ feedback.q7 }}/4</strong>
-                                    </div>
-
-                                    <div class="rating">
-                                        <span>Experience Rating</span>
-                                        <strong>{{ feedback.q8 }}/4</strong>
-                                    </div>
-
-                                </div>
-
-
-                                <div class="feedback-message">
-
-                                    <h3>Written Feedback</h3>
-
-                                    {% if feedback.feedback_message %}
-
-                                        <p>
-                                            {{ feedback.feedback_message }}
-                                        </p>
-
+                
+                        <div class="client-card">
+                
+                            <div class="client-info">
+                
+                                <h3>
+                                    {% if feedback.client_info %}
+                                        {{ feedback.client_info.first_name }}
+                                        {{ feedback.client_info.last_name }}
                                     {% else %}
-
-                                        <p>
-                                            No written feedback was provided.
-                                        </p>
-
+                                        Unknown Client
                                     {% endif %}
-
-                                </div>
-
+                                </h3>
+                
+                                <p>
+                                    Overall Rating: {{ feedback.q1 }}/4
+                                </p>
+                
                             </div>
-
-                        </details>
-
+                
+                            <a
+                                href="{% url 'teacher_feedback_details' feedback.id %}"
+                                class="view-button"
+                            >
+                                View Feedback
+                            </a>
+                
+                        </div>
+                
                     {% empty %}
-
+                
                         <p class="empty-message">
-                            No feedback has been submitted yet.
+                            No matching feedback found.
                         </p>
-
+                
                     {% endfor %}
-
+                
                 </div>
+                {% if page_obj.paginator.num_pages > 1 %}
+
+                <div class="pagination">
+
+                    {% if page_obj.has_previous %}
+                
+                        <a
+                            href="?page={{ page_obj.previous_page_number }}&search={{ search_query|urlencode }}&sort={{ sort_by }}"
+                            class="pagination-button"
+                        >
+                            ← Previous
+                        </a>
+                
+                    {% else %}
+                
+                        <span class="pagination-button disabled">
+                            ← Previous
+                        </span>
+                
+                    {% endif %}
+                
+                
+                    <span class="page-info">
+                        Page {{ page_obj.number }}
+                        of {{ page_obj.paginator.num_pages }}
+                    </span>
+                
+                
+                    {% if page_obj.has_next %}
+                
+                        <a
+                            href="?page={{ page_obj.next_page_number }}&search={{ search_query|urlencode }}&sort={{ sort_by }}"
+                            class="pagination-button"
+                        >
+                            Next →
+                        </a>
+                
+                    {% else %}
+                
+                        <span class="pagination-button disabled">
+                            Next →
+                        </span>
+                
+                    {% endif %}
+                
+                </div>
+
+{% endif %}
 
             </section>
 

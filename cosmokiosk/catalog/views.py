@@ -2,6 +2,10 @@ from django.shortcuts import render, redirect
 from .forms import ClientWaiverForm, FeedbackForm, WaxingWaiverForm, ServicesForm
 from .models import Client_Waiver, Services, Waxing_Waiver, Feedback
 from django.utils import timezone
+from django.core.paginator import Paginator
+from django.db.models import Q, Value
+from django.db.models.functions import Concat
+from django.shortcuts import get_object_or_404
 
 
 # Create your views here.
@@ -214,16 +218,74 @@ def teacher_dashboard(request): # gets all clients who have not checked out
 
 def teacher_feedback(request):
 
-    feedback_list = Feedback.objects.select_related(
-        'client_info'
-    ).order_by('-id')
+    search_query = request.GET.get('search', '').strip()
+    sort_by = request.GET.get('sort', 'newest')
+
+    feedback_list = Feedback.objects.select_related('client_info')
+
+    # Search by first name, last name, or full name
+    if search_query:
+        feedback_list = feedback_list.annotate(
+            full_name=Concat(
+                'client_info__first_name',
+                Value(' '),
+                'client_info__last_name'
+            )
+        ).filter(
+            Q(client_info__first_name__icontains=search_query) |
+            Q(client_info__last_name__icontains=search_query) |
+            Q(full_name__icontains=search_query)
+        )
+
+    # Sort feedback
+    if sort_by == 'oldest':
+        feedback_list = feedback_list.order_by('id')
+
+    elif sort_by == 'az':
+        feedback_list = feedback_list.order_by(
+            'client_info__first_name',
+            'client_info__last_name',
+            '-id'
+        )
+
+    elif sort_by == 'za':
+        feedback_list = feedback_list.order_by(
+            '-client_info__first_name',
+            '-client_info__last_name',
+            '-id'
+        )
+
+    else:
+        sort_by = 'newest'
+        feedback_list = feedback_list.order_by('-id')
+
+    # Display 5 feedback submissions per page
+    paginator = Paginator(feedback_list, 5)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
     return render(
         request,
         'catalog/teacher-feedback.html',
         {
-            'feedback_list': feedback_list
+            'feedback_list': page_obj,
+            'page_obj': page_obj,
+            'search_query': search_query,
+            'sort_by': sort_by,
         }
+    )
+
+def teacher_feedback_details(request, feedback_id):
+    feedback = get_object_or_404(
+        Feedback.objects.select_related('client_info'),
+        id=feedback_id
+    )
+
+    return render(
+        request,
+        'catalog/teacher-feedback-details.html',
+        {'feedback': feedback}
     )
 
 def client_details(request, client_id):
