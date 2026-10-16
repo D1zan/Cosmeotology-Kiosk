@@ -14,5 +14,5 @@ urlpatterns = [
     path('teacher/dashboard/', views.teacher_dashboard, name='teacher_dashboard'),
     path('teacher/client/<int:client_id>/', views.client_details, name='client_details'),
     path('teacher-page/', views.teacher_page, name='teacher-page'),
-    path('teacher/feedback/', views.teacher_feedback, name='teacher_feedback')
+    path('teacher/feedback/', views.teacher_feedback, name='teacher_feedback'),
     ]

@@ -68,13 +68,19 @@ body::after {
 
 .sidebar {
     width: 250px;
-    flex-shrink: 0;
+    height: 100vh;
+
+    position: fixed;
+    top: 0;
+    left: 0;
 
     padding: 30px 18px;
 
     background: rgba(255, 255, 255, 0.96);
-
     box-shadow: 5px 0 25px rgba(20, 10, 60, 0.15);
+
+    overflow-y: auto;
+    z-index: 100;
 }
 
 .sidebar-title {
@@ -126,7 +132,9 @@ body::after {
 
 
 .dashboard-content {
-    flex: 1;
+    margin-left: 250px;
+
+    width: calc(100% - 250px);
     min-width: 0;
 
     padding: 40px;
@@ -399,34 +407,31 @@ body::after {
     }
 
     .dashboard-content {
-        padding: 25px;
+        margin-left: 210px;
+        width: calc(100% - 210px);
     }
 
 }
 
 @media (max-width: 700px) {
 
-    .dashboard-layout {
-        flex-direction: column;
-    }
-
     .sidebar {
+        position: sticky;
+        top: 0;
+
         width: 100%;
+        height: auto;
+
         padding: 18px;
     }
 
-    .sidebar-title {
-        margin-bottom: 15px;
-    }
-
-    .sidebar-nav {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-
     .dashboard-content {
+        margin-left: 0;
+        width: 100%;
         padding: 20px;
     }
+
+}
 
     .dashboard-content > h1 {
         font-size: 28px;
