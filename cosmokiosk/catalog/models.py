@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse # used  in get_absolute_url to get the URL for a specified ID
 from django.db.models import UniqueConstraint
 from django.db.models.functions import Lower
-
+from django.contrib.auth.hashers import make_password, check_password
 from django.utils import timezone
 import uuid
 
@@ -18,6 +18,17 @@ class Profile_Instance(models.Model):
         max_length=254,
         help_text="Example: abc@gmail.com",
     )
+    password = models.CharField(
+        max_length=128,
+        blank=True,
+        default=""
+    )
+
+    def set_password(self, raw_password):
+        self.password = make_password(raw_password)
+
+    def check_password(self, raw_password):
+        return check_password(raw_password, self.password)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     is_student = models.BooleanField(default=False, null=True)
