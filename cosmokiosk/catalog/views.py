@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from .forms import ClientWaiverForm, FeedbackForm, WaxingWaiverForm, ServicesForm
-from .models import Client_Waiver, Services, Waxing_Waiver, Feedback
+from .models import Client_Waiver, Services, Waxing_Waiver, Feedback, Profile_Instance
 from django.utils import timezone
 from django.core.paginator import Paginator
 from django.db.models import Q, Value
 from django.db.models.functions import Concat
 from django.shortcuts import get_object_or_404
+from .decorators import teacher_required
 
 
 # Create your views here.
@@ -184,7 +185,7 @@ def checkout(request):
         {"clients": clients}
     )
 
-
+@teacher_required
 def teacher_dashboard(request): # gets all clients who have not checked out
     clients = Client_Waiver.objects.filter(
         checked_out=False
@@ -216,6 +217,7 @@ def teacher_dashboard(request): # gets all clients who have not checked out
          }
     )
 
+@teacher_required
 def teacher_feedback(request):
 
     search_query = request.GET.get('search', '').strip()
@@ -276,6 +278,7 @@ def teacher_feedback(request):
         }
     )
 
+@teacher_required
 def teacher_feedback_details(request, feedback_id):
     feedback = get_object_or_404(
         Feedback.objects.select_related('client_info'),
@@ -288,6 +291,7 @@ def teacher_feedback_details(request, feedback_id):
         {'feedback': feedback}
     )
 
+@teacher_required
 def client_details(request, client_id):
     try:
         client = Client_Waiver.objects.get(id=client_id)
@@ -314,24 +318,43 @@ def client_details(request, client_id):
         }
     )
 
+
 def teacher_page(request):
+    error_message = None
 
     if request.method == "POST":
-
         form_type = request.POST.get("form_type")
+        email = request.POST.get("email", "").strip()
+        password = request.POST.get("password", "")
 
-        # SIGN IN FORM
-        if form_type == "sign_in":
+        print("FORM TYPE:", form_type)
+        print("EMAIL:", email)
+        print("PASSWORD PROVIDED:", bool(password))
 
-            email = request.POST.get("email")
-            password = request.POST.get("password")
+        teachers = Profile_Instance.objects.filter(
+            email_address__iexact=email,
+            is_shop_instructor=True
+        )
 
-            print("Sign In")
-            print("Email:", email)
+        teacher = None
 
-            # Send teacher to dashboard
+        for account in teachers:
+            if account.check_password(password):
+                teacher = account
+            break
+
+            print("TEACHER FOUND:", teacher is not None)
+
+        if teacher:
+            request.session.cycle_key()
+            request.session["teacher_id"] = teacher.pk
+
             return redirect("teacher_dashboard")
+        else:
+            error_message = "Invalid email or password."
+
     return render(
         request,
-        "catalog/teacher_sign_in.html"
+        "catalog/teacher_sign_in.html",
+        {"error_message": error_message}
     )

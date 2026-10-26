@@ -30,6 +30,11 @@
                 <p class="form-description">
                     Already have an account? Sign in below.
                 </p>
+                {% if error_message %}
+                    <p style="color: red; text-align: center;">
+                        {{ error_message }}
+                    </p>
+                {% endif %}
 
                 <form method="POST">
                     {% csrf_token %}
