@@ -110,7 +110,7 @@ body::after {
     font-size: 15px;
     font-weight: 600;
 
-    transition: background 0.2s, color 0.2s;
+    transition: background0.2s, color 0.2s;
 }
 
 .sidebar-link:hover {
@@ -206,7 +206,7 @@ body::after {
     margin: 0 0 7px;
 
     color: #38206f;
-    font-size: 18px;
+    font-size: 18px
 }
 
 .client-info p {
@@ -817,4 +817,27 @@ body::after {
     .sidebar .back-home-btn {
         margin-top: 20px;
     }
+}
+
+
+.client-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+
+.client-card .view-button {
+    width: auto;
+    min-width: 125px;
+    padding: 11px 18px;
+    margin: 0;
+    flex-shrink: 0;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
